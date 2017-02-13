@@ -1,11 +1,13 @@
-<template lang="jade">
-  div#app
-    div.nav-container
-      navbar
-    div.view-container
-      transition name="fade" mode="out-in"
-        router-view
-    
+<template lang="html">
+  <div id="app">
+    <div class="nav-container">
+      <navbar></navbar>
+    </div>
+  
+    <transition name="fade" mode="out-in">
+      <router-view class="view"></router-view>
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -34,6 +36,21 @@ body
 h1, h2, h3, h4, h5, h6, p 
   margin 0px
   padding 0px
+  color rgba(0, 0, 0, .5)
+  font-weight: normal;
+
+
+button
+  color white
+  height 30px
+  border-radius 2px
+  background-color #00e468
+  box-shadow inset 0 -1px 0 0 #10c462
+  border none
+  cursor pointer
+  font-size 14px
+  line-height: 1em
+  
 
 
 #app 
@@ -45,9 +62,14 @@ h1, h2, h3, h4, h5, h6, p
   
   .nav-contanier 
 
-  .view-container
-  
-    fade-enter-active, .fade-leave-active 
-      transition all .2s ease
+  .fade-enter-active, .fade-leave-active 
+    transition all .2s ease
+
+  .fade-enter, .fade-leave-active
+    opacity 0
+
+  .view
+    margin 0 auto
+    position relative
       
 </style>

@@ -1,7 +1,9 @@
 <template lang="jade">
-  div.products-page
+  div.product-page
     div.nav
-      h4 Products
+      h3 Products
+      h3 >
+      h3 {{product.name}}
       router-link(to="/products/add") 
         button add new product
 </template>
@@ -9,16 +11,18 @@
 <script>
 export default {
   name: 'ProductPage',
-  data () {
+  data() {
     return {
-
+      product: {
+        name: "THC Cookie"
+      }
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-.products-page 
+.product-page 
   display flex
   flex-basis 100%
   flex-wrap wrap
@@ -29,15 +33,13 @@ export default {
     flex-basis 100%
     flex-wrap wrap
     padding 10px 0 10px 0
-    align-items center
 
-    h4
-      font-size: 14px;
-      margin-left 10px       
-      &:first-child
-        margin-left 70px       
+    h3
+      margin-left 70px
+
     a
       margin-left auto
       margin-right 70px
+
 
 </style>

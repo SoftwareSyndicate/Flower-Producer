@@ -33,7 +33,7 @@ export default {
   img 
     height 1.8em
     width auto
-    margin-left 3em
+    margin-left 70px
     margin-right .3em
     color #fff
   
@@ -48,7 +48,7 @@ export default {
 
   .left 
     margin-left auto
-    margin-right 3em
+    margin-right 70px
     
     a 
       color #fff

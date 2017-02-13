@@ -1,24 +1,25 @@
 <template lang="jade">
-  div.products-page
-    div.nav
-      h4 Products
-      router-link(to="/products/add") 
-        button add new product
+  div.product-form
+    form
+      p taco
+    
 </template>
 
 <script>
 export default {
-  name: 'ProductPage',
-  data () {
+  name: 'AddProductPage',
+  data() {
     return {
-
+      product: {
+        name: "New"
+      }
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-.products-page 
+.add-product-page 
   display flex
   flex-basis 100%
   flex-wrap wrap
@@ -39,5 +40,6 @@ export default {
     a
       margin-left auto
       margin-right 70px
+
 
 </style>

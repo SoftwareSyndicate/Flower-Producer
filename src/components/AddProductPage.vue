@@ -1,24 +1,36 @@
 <template lang="jade">
-  div.products-page
+  div.add-product-page
     div.nav
       h4 Products
+      h4 >
+      h4 {{product.name}}
       router-link(to="/products/add") 
         button add new product
+        
+    div.product-form-container
+      product-form :product=product
+      
 </template>
 
 <script>
+import ProductForm from 'components/ProductForm'
 export default {
-  name: 'ProductPage',
-  data () {
+  name: 'AddProductPage',
+  data() {
     return {
-
+      product: {
+        name: "New"
+      }
     }
+  },
+  components: {
+    'product-form': ProductForm
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-.products-page 
+.add-product-page 
   display flex
   flex-basis 100%
   flex-wrap wrap
@@ -39,5 +51,9 @@ export default {
     a
       margin-left auto
       margin-right 70px
+
+  .product-form-container
+    padding 30px 70px 30px 70px
+
 
 </style>
