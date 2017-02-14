@@ -1,18 +1,29 @@
 <template lang="jade">
   div.products-page
-    div.nav
-      h4 Products
-      router-link(to="/products/add") 
-        button add new product
+      
+    router-link(to="/products/add") 
+      button add new product
 </template>
 
 <script>
+import BreadCrumbs from 'components/BreadCrumbs'
 export default {
   name: 'ProductPage',
-  data () {
+  components: {
+    'breadcrumbs': BreadCrumbs
+  },
+  data(){
     return {
-
+      crumbs: [
+        {
+          name: "Products",
+          route: "/products"
+        }
+      ]
     }
+  },
+  created: function(){
+    this.$emit('set-crumbs', this.crumbs);
   }
 }
 </script>
@@ -23,21 +34,9 @@ export default {
   flex-basis 100%
   flex-wrap wrap
 
-  .nav
-    background-color rgba(0, 0, 0, .05)
-    display flex
+  .breadcrumbs-container
     flex-basis 100%
-    flex-wrap wrap
-    padding 10px 0 10px 0
-    align-items center
 
-    h4
-      font-size: 14px;
-      margin-left 10px       
-      &:first-child
-        margin-left 70px       
-    a
-      margin-left auto
-      margin-right 70px
 
+    
 </style>

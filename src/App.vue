@@ -3,19 +3,35 @@
     <div class="nav-container">
       <navbar></navbar>
     </div>
-  
+
+    <div class="breadcrumbs-container">
+      <breadcrumbs :crumbs="crumbs"></breadcrumbs>
+    </div>
+    
     <transition name="fade" mode="out-in">
-      <router-view class="view"></router-view>
+      <router-view class="view" v-on:set-crumbs="setBreadCrumbs"></router-view>
     </transition>
   </div>
 </template>
 
 <script>
 import Navbar from 'components/Navbar'
+import BreadCrumbs from 'components/BreadCrumbs'
 export default {
   name: 'App',
   components: {
-    'navbar': Navbar
+    'navbar': Navbar,
+    'breadcrumbs': BreadCrumbs
+  },
+  data(){
+    return {
+      crumbs: []
+    }
+  },
+  methods: {
+    setBreadCrumbs(crumbs){
+      this.crumbs = crumbs;
+    }
   }
 }
 </script>
@@ -33,7 +49,7 @@ body
 
 
 
-h1, h2, h3, h4, h5, h6, p 
+h1, h2, h3, h4, h5, h6, p, a 
   margin 0px
   padding 0px
   color rgba(0, 0, 0, .5)

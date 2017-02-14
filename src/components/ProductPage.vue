@@ -1,9 +1,5 @@
 <template lang="jade">
   div.product-page
-    div.nav
-      h3 Products
-      h3 >
-      h3 {{product.name}}
       router-link(to="/products/add") 
         button add new product
 </template>

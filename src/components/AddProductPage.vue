@@ -1,12 +1,5 @@
 <template lang="jade">
   div.add-product-page
-    div.nav
-      h4 Products
-      h4 >
-      h4 {{product.name}}
-      router-link(to="/products/add") 
-        button add new product
-        
     div.product-form-container
       product-form :product=product
       
@@ -20,11 +13,24 @@ export default {
     return {
       product: {
         name: "New"
-      }
+      },
+      crumbs: [
+        {
+          name: "Products",
+          route: "/products"
+        },
+         {
+          name: "Add a Product",
+          route: "/products/add"
+        }
+      ]
     }
   },
   components: {
     'product-form': ProductForm
+  },
+  created: function(){
+    this.$emit('set-crumbs', this.crumbs);
   }
 }
 </script>

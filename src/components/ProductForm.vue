@@ -12,9 +12,9 @@ export default {
     return {
       product: {
         name: "New"
-      }
+      },
     }
-  }
+  },
 }
 </script>
 
