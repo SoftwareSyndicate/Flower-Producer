@@ -65,9 +65,8 @@ button
   border none
   cursor pointer
   font-size 14px
-  line-height: 1em
-  
-
+  line-height 1em
+  outline none
 
 #app 
   font-family 'Avenir', Helvetica, Arial, sans-serif
