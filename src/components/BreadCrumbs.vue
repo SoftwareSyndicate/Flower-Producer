@@ -2,7 +2,7 @@
   div.breadcrumbs
     div.crumb(v-for="crumb in crumbs")
       router-link(:to="crumb.route") 
-        {{crumb.name}}
+        {{crumb.name}} 
       img(src="../assets/arrow-left.svg")
 </template>
 
@@ -25,10 +25,9 @@ export default {
 
 <style lang="stylus" scoped>
 .breadcrumbs
-  background-color rgba(0, 0, 0, .05)
   display flex
   flex-basis 100%
-  padding 10px 0px 10px 70px   
+  padding 10px 0px 10px 12px
   
   .crumb
     display flex
@@ -37,8 +36,6 @@ export default {
       margin-right 20px
 
     &:last-child
-      a
-        color rgba(0, 0, 0, .9)
       img
         display none
 
@@ -46,6 +43,5 @@ export default {
       margin-right 20px
       font-size 14px
       text-decoration none
-      color rgba(0, 0, 0, .4)
 
 </style>

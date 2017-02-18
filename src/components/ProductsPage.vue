@@ -3,8 +3,8 @@
 
     div.header
       router-link(to="/products/add") 
-        button add new product
-      
+        s-button(:title="'add new product'")
+  
     div.product-list
       div.product-container
         product-list-item
@@ -18,10 +18,13 @@
 
 <script>
 import ProductListItem from 'components/ProductListItem'
+import Button from 'components/Button'
+
 export default {
   name: 'ProductPage',
   components: {
-    'product-list-item': ProductListItem
+    'product-list-item': ProductListItem,
+    's-button': Button
   },
   data(){
     return {
@@ -52,20 +55,17 @@ export default {
 
     a 
       margin-left auto
-      margin-right 70px
-      margin-top 20px
 
   .product-list
     display flex
     flex-basis 100%
     flex-wrap wrap
-    padding-left 70px
-    padding-right 70px
-
+    
     .product-container
       display flex
       flex-basis 100%
       margin-bottom 15px
+      cursor pointer
 
       
 </style>

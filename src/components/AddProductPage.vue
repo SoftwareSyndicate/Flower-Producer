@@ -59,7 +59,7 @@ export default {
       margin-right 70px
 
   .product-form-container
-    padding 30px 70px 30px 70px
+    display flex
 
 
 </style>
