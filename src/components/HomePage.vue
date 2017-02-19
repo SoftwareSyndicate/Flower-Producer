@@ -8,10 +8,10 @@
 <script>
 export default {
   name: 'HomePage',
-  data () {
-    return {
-
-    }
+  created(){
+    this.$store.commit("UPDATE_BREADCRUMBS", [
+      {name: 'Home', route: '/home'}
+    ]);
   }
 }
 </script>

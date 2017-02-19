@@ -9,28 +9,15 @@
 import ProductForm from 'components/ProductForm'
 export default {
   name: 'AddProductPage',
-  data() {
-    return {
-      product: {
-        name: "New"
-      },
-      crumbs: [
-        {
-          name: "Products",
-          route: "/products"
-        },
-         {
-          name: "Add a Product",
-          route: "/products/add"
-        }
-      ]
-    }
-  },
   components: {
     'product-form': ProductForm
   },
   created: function(){
-    this.$emit('set-crumbs', this.crumbs);
+    this.$store.commit("UPDATE_BREADCRUMBS", [
+      {name: 'Home', route: '/home'},
+      {name: 'Products', route: '/products'},
+      {name: 'Add a Product', route: '/products/add'}
+    ]);
   }
 }
 </script>

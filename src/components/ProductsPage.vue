@@ -28,16 +28,14 @@ export default {
   },
   data(){
     return {
-      crumbs: [
-        {
-          name: "Products",
-          route: "/products"
-        }
-      ]
+      
     }
   },
   created: function(){
-    this.$emit('set-crumbs', this.crumbs);
+    this.$store.commit("UPDATE_BREADCRUMBS", [
+      {name: 'Home', route: '/home'},
+      {name: 'Products', route: '/products'}
+    ]);
   }
 }
 </script>

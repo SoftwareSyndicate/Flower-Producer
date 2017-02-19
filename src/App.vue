@@ -65,12 +65,12 @@ h1, h2, h3, h4, h5, h6, p, a, span
   height 100%
   
   .left
-    flex-basis 20%
+    flex-basis 15%
     height 100%
     border-right solid 1px #e7eaf3
     
   .right
-    flex-basis 80%
+    flex-basis 85%
 
     .breadcrumbs-container
       border-bottom solid 1px #e7eaf3

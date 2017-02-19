@@ -1,25 +1,18 @@
 <template lang="jade">
   div.breadcrumbs
-    div.crumb(v-for="crumb in crumbs")
+    div.crumb(v-for="crumb in breadcrumbs")
       router-link(:to="crumb.route") 
         {{crumb.name}} 
       img(src="../assets/arrow-left.svg")
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'BreadCrumbs',
-  props: {
-    crumbs: {
-      type: Array,
-      default: []
-    }
-  },
-  data() {
-    return {
-    
-    }
-  }
+  computed: mapState({
+    breadcrumbs: state => state.breadcrumbs
+  })
 }
 </script>
 
@@ -27,7 +20,8 @@ export default {
 .breadcrumbs
   display flex
   flex-basis 100%
-  padding 10px 0px 10px 12px
+  padding-left 10px 
+  height 40px
   
   .crumb
     display flex

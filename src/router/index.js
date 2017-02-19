@@ -17,6 +17,10 @@ export default new Router({
       component: HomePage
     },
     {
+      path: '/home',
+      redirect: '/'
+    },
+    {
       path: '/products',
       name: 'products',
       component: ProductsPage,
@@ -30,6 +34,7 @@ export default new Router({
       path: '/products/:id',
       name: 'product',
       component: ProductPage,
-    }
+    },
+
   ]
 })
