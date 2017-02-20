@@ -55,6 +55,7 @@ h1, h2, h3, h4, h5, h6, p, a, span
   color rgba(0, 0, 0, .5)
   font-weight normal
   text-decoration none
+  line-height 1em
 
 #app 
   font-family 'Avenir', Helvetica, Arial, sans-serif
@@ -63,6 +64,10 @@ h1, h2, h3, h4, h5, h6, p, a, span
   text-align center
   display flex
   height 100%
+
+  .row
+    display flex
+    flex-basis 100%
   
   .left
     flex-basis 15%
@@ -84,6 +89,6 @@ h1, h2, h3, h4, h5, h6, p, a, span
     .view
       margin 0 auto
       position relative
-      padding 30px
+      padding 60px
       
 </style>

@@ -39,7 +39,7 @@ export default {
     height 40px
     padding-left 12px
     border-bottom solid 1px #e7eaf3
-    margin-bottom 30px 
+    margin-bottom 60px 
     
     h1 
       font-weight normal

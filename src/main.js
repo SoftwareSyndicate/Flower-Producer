@@ -17,6 +17,17 @@ sync(store, router)
 //   Vue.filter(key, filters[key])
 // })
 
+// register global components
+import Button from 'components/Button'
+import Input from 'components/Input'
+import TextArea from 'components/TextArea'
+
+Vue.component('s-button', Button)
+Vue.component('s-input', Input)
+Vue.component('s-textarea', TextArea)
+
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

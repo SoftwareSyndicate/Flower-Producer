@@ -37,8 +37,9 @@ export default {
     align-items center
 
     h4
-      font-size: 14px;
-      margin-left 10px       
+      font-size 14px
+      margin-left 10px
+
       &:first-child
         margin-left 70px       
     a
@@ -47,6 +48,7 @@ export default {
 
   .product-form-container
     display flex
+    flex-basis 100%
 
 
 </style>
