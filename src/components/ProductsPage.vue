@@ -6,14 +6,8 @@
         s-button(:title="'add new product'")
   
     div.product-list
-      div.product-container
-        product-list-item
-      div.product-container
-        product-list-item
-      div.product-container
-        product-list-item
-      div.product-container
-        product-list-item
+      div.product-container(v-for="product in products")
+        product-list-item(:product="product")
 </template>
 
 <script>
@@ -26,9 +20,37 @@ export default {
     'product-list-item': ProductListItem,
     's-button': Button
   },
-  data(){
-    return {
-      
+  computed: {
+    products(){
+      return [
+        {
+          name: "Saigon Cinnamon Snickerdoodle Cookie",
+          product_images: ["http://www.thegoodship.com/wp-content/uploads/2016/09/snicker-new.png"],
+          tags: ["Edible", "Organic"] ,
+          created_at: new Date(),
+          likes: 840,
+          comments: 420,
+          thc_content: 10.0
+        },
+        {
+          name: "Deep Dark Chocolate Bar",
+          product_images: ["http://www.thegoodship.com/wp-content/uploads/2016/09/deepdark-new.png"],
+          tags: ["Edible", "Organic"] ,
+          created_at: new Date(),
+          likes: 840,
+          comments: 420,
+          thc_content: 10.0
+        },
+        {
+          name: "Lemon Lime Pastilles",
+          product_images: ["http://www.thegoodship.com/wp-content/uploads/2015/04/packaging_rendering_pastilles_lemon_lime_flat-website.png"],
+          tags: ["Edible", "Organic"] ,
+          created_at: new Date(),
+          likes: 840,
+          comments: 420,
+          thc_content: 2.5
+        }
+      ]
     }
   },
   created: function(){
