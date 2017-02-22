@@ -35,6 +35,10 @@ export default new Router({
       name: 'product',
       component: ProductPage,
     },
-
+    {
+      path: '/products/:id/edit',
+      name: 'edit-product',
+      component: ProductPage,
+    },
   ]
 })

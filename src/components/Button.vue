@@ -42,5 +42,20 @@ export default {
       font-size 1em
       line-height 1em
       font-weight 500
+
+    &.secondary
+      background-color #fff
+      box-shadow inset 0 -1px 0 0 rgba(187, 193, 214, 0.4)
+      border solid 1px #bcc1d7
+      border-radius 4px
+      min-width 50px
+      
+      span
+        color #787e98
+        font-size 13px
+
+      &:hover
+        background-color darken(#fff, 5%)
+        box-shadow none
     
 </style>
