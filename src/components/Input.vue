@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return {
-    
+
     }
   }
 }
@@ -33,12 +33,12 @@ input
   border solid 1px #d6dae9
   outline none
   font-size 15px
-  padding 15px 0px 15px 20px
+  padding 20px 0px 20px 20px
   width 100%
   min-width 100px
 
   &:focus
     border 1px #10c462 solid
     transition border .5s
-    
+
 </style>

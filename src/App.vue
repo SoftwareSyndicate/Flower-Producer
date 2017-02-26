@@ -3,12 +3,12 @@
     <div class="left">
       <side-nav></side-nav>
     </div>
-    
+
     <div class="right">
       <div class="breadcrumbs-container">
         <breadcrumbs :crumbs="crumbs"></breadcrumbs>
       </div>
-      
+
       <transition name="fade" mode="out-in">
         <router-view class="view" v-on:set-crumbs="setBreadCrumbs"></router-view>
       </transition>
@@ -44,10 +44,9 @@ html
   height 100%
 
 
-body 
+body
   margin 0
   background-color #fff
-  height 100%
 
 h1, h2, h3, h4, h5, h6, p, a, span
   margin 0px
@@ -57,7 +56,7 @@ h1, h2, h3, h4, h5, h6, p, a, span
   text-decoration none
   line-height 1em
 
-#app 
+#app
   font-family 'Avenir', Helvetica, Arial, sans-serif
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
@@ -68,19 +67,18 @@ h1, h2, h3, h4, h5, h6, p, a, span
   .row
     display flex
     flex-basis 100%
-  
+
   .left
     flex-basis 15%
-    height 100%
     border-right solid 1px #e7eaf3
-    
+
   .right
     flex-basis 85%
 
     .breadcrumbs-container
       border-bottom solid 1px #e7eaf3
-    
-    .fade-enter-active, .fade-leave-active 
+
+    .fade-enter-active, .fade-leave-active
       transition all .2s ease
 
     .fade-enter, .fade-leave-active
@@ -90,5 +88,5 @@ h1, h2, h3, h4, h5, h6, p, a, span
       margin 0 auto
       position relative
       padding 60px
-      
+
 </style>

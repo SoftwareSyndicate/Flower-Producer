@@ -21,11 +21,12 @@ sync(store, router)
 import Button from 'components/Button'
 import Input from 'components/Input'
 import TextArea from 'components/TextArea'
+import Select from 'components/Select'
 
 Vue.component('s-button', Button)
 Vue.component('s-input', Input)
 Vue.component('s-textarea', TextArea)
-
+Vue.component('s-select', Select)
 
 
 /* eslint-disable no-new */
@@ -36,3 +37,4 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
