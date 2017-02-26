@@ -71,6 +71,7 @@ h1, h2, h3, h4, h5, h6, p, a, span
   .left
     flex-basis 15%
     border-right solid 1px #e7eaf3
+    min-height 100vh
 
   .right
     flex-basis 85%
