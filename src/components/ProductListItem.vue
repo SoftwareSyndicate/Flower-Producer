@@ -2,36 +2,36 @@
   div.product-list-item
     div.checkbox-container
       input(type="checkbox")
-    
-    div.item 
+
+    div.item
       div.img-container
         img(:src="product.product_images[0]")
-        
+
       div.info-container
         div.top
           div.description-container
             h4 {{product.name}}
-            span(v-for="tag in product.tags") {{tag}} 
-        
+            span(v-for="tag in product.tags") {{tag}}
+
           div.actions-container
             div.buttons-container
               s-button.secondary(:title="'Archive'")
               router-link(:to="{ name: 'edit-product', params: { id: product.id }}")
                 s-button.secondary(:title="'Edit'")
 
-        div.bottom     
+        div.bottom
           div.stats-container
             div.buttons-container
               s-button.secondary(:title="'2.4K'")
               s-button.secondary(:title="'920'")
               s-button.secondary(:title="'THC 10mg'")
-        
+
           div.meta-container
             p.created-at Added {{product.created_at.toLocaleDateString()}}
             img(:src="product.created_by.avatar")
-              
 
-            
+
+
 </template>
 
 <script>
@@ -50,7 +50,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.product-list-item 
+
+weird-green = #3ed783
+
+.product-list-item
   display flex
   flex-basis 100%
   align-items center
@@ -58,7 +61,13 @@ export default {
   box-shadow 0 2px 2px 0 #e8eaf4
   border solid 1px #bcc1d7
   min-height 200px
-  
+  transition all .35s ease-in-out
+  cursor pointer
+
+  &:hover
+    border solid 1px weird-green
+    background-color rgba(62, 215, 130, 0.04)
+
   .checkbox-container
     flex-shrink 1
     background-color #f8faff
@@ -67,10 +76,10 @@ export default {
     width 36px
     justify-content center
     display flex
-    
+
     input
       margin-top 14px
-    
+
 
   .item
     display flex
@@ -87,23 +96,23 @@ export default {
       justify-content center
       align-items center
       flex-shrink 1
-         
+
       img
         height 70%
         width auto
-        
+
     .info-container
       flex-grow 1
       display flex
       flex-wrap wrap
 
-      .top 
+      .top
         display flex
         flex-basis 100%
-        border-bottom solid 2px #e8eaf4          
+        border-bottom solid 2px #e8eaf4
         margin-bottom 20px
         padding-bottom 20px
-        
+
         .description-container
           text-align left
           flex-wrap wrap
@@ -122,21 +131,21 @@ export default {
            padding-right 5px
 
            &:after
-            content "-" 
+            content "-"
 
            &:last-child
              &:after
                content ""
-               
-        .actions-container 
+
+        .actions-container
           margin-left auto
-          
-          .buttons-container 
+
+          .buttons-container
             display flex
 
             .syndicate-button
               margin-left 10px
-          
+
 
     .bottom
       display flex
@@ -148,23 +157,23 @@ export default {
          display flex
          .syndicate-button
            margin-right 18px
-     
-     .meta-container 
+
+     .meta-container
        align-items center
        margin-left auto
        display flex
-       
+
        .created-at
          font-size 13px
          letter-spacing -0.3px
          color #959bb4
          margin-right 15px
-         
-       img 
+
+       img
          width 32px
          height 32px
          border-radius 40px
          background-color #d8d8d8
          border solid 0.5px #8e929e
-     
+
 </style>

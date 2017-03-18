@@ -1,8 +1,8 @@
 <template lang="jade">
   div.breadcrumbs
     div.crumb(v-for="crumb in breadcrumbs")
-      router-link(:to="crumb.route") 
-        {{crumb.name}} 
+      router-link(:to="crumb.route")
+        {{crumb.name}}
       img(src="../assets/arrow-left.svg")
 </template>
 
@@ -17,12 +17,15 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+
+breadcrumbs-height = 60px;
+
 .breadcrumbs
   display flex
   flex-basis 100%
-  padding-left 10px 
-  height 40px
-  
+  padding-left 10px
+  height breadcrumbs-height
+
   .crumb
     display flex
     align-items center

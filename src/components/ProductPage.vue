@@ -1,6 +1,6 @@
 <template lang="jade">
   div.product-page
-      router-link(to="/products/add") 
+      router-link(to="/products/add")
         button add new product
 </template>
 
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.product-page 
+.product-page
   display flex
   flex-basis 100%
   flex-wrap wrap

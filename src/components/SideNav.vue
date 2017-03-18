@@ -1,14 +1,14 @@
 <template lang="jade">
   div#side-nav
     div.header
-      h1
-        router-link(to="/") Flower
+      div.rectangle
+      router-link(to="/") Flower
 
     div.items
-      div.item(v-for="item in items")
-        router-link(:to="item.route") {{item.name}}
-        
-    
+      router-link(:to="item.route", tag="div", v-for="item in items").item
+        a {{item.name}}
+
+
 </template>
 
 <script>
@@ -19,6 +19,7 @@ export default {
     return {
       items: [
         {name: 'Products', route: '/products'},
+        {name: 'Company', route: '/company'},
       ]
     }
   }
@@ -27,7 +28,9 @@ export default {
 
 <style lang="stylus" scoped>
 
-#side-nav 
+weird-green = #3ed783
+
+#side-nav
   width 100%
   height 100%
   background-color #f6f8ff
@@ -36,26 +39,51 @@ export default {
     display flex
     flex-basis 100%
     align-items center
-    height 40px
-    padding-left 12px
+    height 60px
     border-bottom solid 1px #e7eaf3
-    margin-bottom 60px 
-    
-    h1 
-      font-weight normal
+    margin-bottom 60px
 
-      a 
-        text-decoration none
-        font-size .8em
+    .rectangle
+      width 30px
+      height 30px
+      border-top-right-radius 6px
+      border-bottom-right-radius 6px
+      background-color weird-green
+      margin-right 10px
+
+
+    a
+      font-size 14px
+      font-weight 600
+      color #1f2532
+
+
 
   .items
     display flex
     flex-wrap wrap
+    padding-left 24px
+    padding-right 24px
 
     .item
-      padding-left 12px
+      padding 16px
       display flex
       flex-basis 100%
+      margin-bottom 16px
+      transition all .25s ease-in-out
+
+      &.router-link-active
+        border-radius 4px
+        background-color #d3d9ee
+        box-shadow inset 0 -2px 0 0 rgba(0, 0, 0, 0.08)
+
+        a
+          color #4f5460
+
+      a
+        font-size 14px
+        font-weight 600
+        color #959bb4
 
       .sub-item
         display flex
