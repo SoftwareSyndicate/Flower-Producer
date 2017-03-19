@@ -14,7 +14,6 @@ export default {
   },
   created: function(){
     this.$store.commit("UPDATE_BREADCRUMBS", [
-      {name: 'Home', route: '/home'},
       {name: 'Products', route: '/products'},
       {name: 'Edit', route: '/products/:id/edit'}
     ]);

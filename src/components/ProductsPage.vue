@@ -2,11 +2,13 @@
   div.products-page
 
     div.header
-      router-link(to="/products/add") 
+      h2.product-count {{filteredProducts.length}} products available
+
+      router-link(to="/products/add")
         s-button(:title="'add new product'")
-  
+
     div.product-list
-      div.product-container(v-for="product in products")
+      div.product-container(v-for="product in filteredProducts")
         product-list-item(:product="product")
 </template>
 
@@ -63,11 +65,16 @@ export default {
           thc_content: 2.5
         }
       ]
+    },
+    filteredProducts(){
+      return this.products;
+    },
+    productFilters(){
+
     }
   },
   created: function(){
     this.$store.commit("UPDATE_BREADCRUMBS", [
-      {name: 'Home', route: '/home'},
       {name: 'Products', route: '/products'}
     ]);
   }
@@ -75,7 +82,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.products-page 
+.products-page
   display flex
   flex-basis 100%
   flex-wrap wrap
@@ -84,18 +91,23 @@ export default {
     display flex
     flex-basis 100%
     margin-bottom 20px
+    align-items center
 
-    a 
+    .product-count
+      font-size 20px
+      color #1f2532
+
+    a
       margin-left auto
 
   .product-list
     display flex
     flex-basis 100%
     flex-wrap wrap
-    
+
     .product-container
       display flex
       flex-basis 100%
       margin-bottom 15px
-      
+
 </style>

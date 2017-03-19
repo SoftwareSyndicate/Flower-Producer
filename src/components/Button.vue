@@ -1,5 +1,5 @@
 <template lang="jade">
-  div.syndicate-button
+  div.syndicate-button(@click="onclick()")
     span {{title}}
 </template>
 
@@ -10,11 +10,15 @@ export default {
     title: {
       type: String,
       default: "button"
+    },
+    onclick: {
+      type: Function,
+      default: null
     }
   },
   data() {
     return {
-    
+
     }
   }
 }
@@ -22,7 +26,7 @@ export default {
 
 <style lang="stylus" scoped>
   bg-color = #00e468
-  
+
   .syndicate-button
     display flex
     background-color bg-color
@@ -36,8 +40,8 @@ export default {
 
     &:hover
       background-color darken(bg-color, 5%)
-      
-    span 
+
+    span
       color white
       font-size 1em
       line-height 1em
@@ -49,7 +53,7 @@ export default {
       border solid 1px #bcc1d7
       border-radius 4px
       min-width 50px
-      
+
       span
         color #787e98
         font-size 13px
@@ -57,5 +61,5 @@ export default {
       &:hover
         background-color darken(#fff, 5%)
         box-shadow none
-    
+
 </style>

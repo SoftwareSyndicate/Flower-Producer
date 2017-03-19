@@ -8,6 +8,11 @@ export default {
   name: 'CompanyPage',
   data() {
     return {    }
+  },
+  created: function(){
+    this.$store.commit("UPDATE_BREADCRUMBS", [
+      {name: 'Company', route: '/company'},
+    ]);
   }
 }
 </script>

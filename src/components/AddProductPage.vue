@@ -2,7 +2,8 @@
   div.add-product-page
     div.product-form-container
       product-form :product=product
-      
+
+    s-button(title="Save", :onclick="save")
 </template>
 
 <script>
@@ -12,18 +13,28 @@ export default {
   components: {
     'product-form': ProductForm
   },
-  created: function(){
+  created(){
     this.$store.commit("UPDATE_BREADCRUMBS", [
-      {name: 'Home', route: '/home'},
       {name: 'Products', route: '/products'},
       {name: 'Add a Product', route: '/products/add'}
     ]);
+  },
+
+  methods: {
+    save(){
+
+    }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-.add-product-page 
+
+.view
+  margin 0px
+  padding-right 0px !important
+
+.add-product-page
   display flex
   flex-basis 100%
   flex-wrap wrap
@@ -41,7 +52,7 @@ export default {
       margin-left 10px
 
       &:first-child
-        margin-left 70px       
+        margin-left 70px
     a
       margin-left auto
       margin-right 70px
@@ -50,5 +61,8 @@ export default {
     display flex
     flex-basis 100%
 
+  .syndicate-button
+    margin-left auto
+    margin-right 30px
 
 </style>

@@ -1,19 +1,20 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import * as getters from './getters'
-import * as actions from './actions'
-import mutations from './mutations'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import * as getters from './getters';
+import * as actions from './actions';
+import mutations from './mutations';
 
-import { fetchItems, fetchIdsByType, fetchUser } from './api'
+import { fetchItems, fetchIdsByType, fetchUser } from './api';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 const state = {
   breadcrumbs: [],
   sideNavItems: [],
   org: {},
   products: [],
-}
+  activeProduct: null
+};
 
 const store = new Vuex.Store({
   state,
@@ -21,4 +22,4 @@ const store = new Vuex.Store({
   mutations
 });
 
-export default store
+export default store;

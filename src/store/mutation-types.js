@@ -1,2 +1,5 @@
 export const UPDATE_BREADCRUMBS = 'UPDATE_BREADCRUMBS'
 export const UPDATE_SIDENAV = 'UPDATE_SIDENAV'
+
+//Products
+export const SET_PRODUCTS = 'SET_PRODUCTS'

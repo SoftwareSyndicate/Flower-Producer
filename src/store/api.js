@@ -2,28 +2,20 @@ import Firebase from 'firebase/app'
 import 'firebase/database'
 
 const config = {
-  databaseURL: 'https://hacker-news.firebaseio.com'
+  apiKey: "AIzaSyAgxDkwNB0TSm83GbB6FGKpIsxs0WRQzxI",
+  authDomain: "flower-c6ff3.firebaseapp.com",
+  databaseURL: 'https://flower-c6ff3.firebaseio.com/',
+  storageBucket: "gs://flower-c6ff3.appspot.com/"
 }
 const version = '/v0'
 
 Firebase.initializeApp(config)
+
 const api = Firebase.database().ref(version)
-export default api
 
 
-// warm the front page cache every 15 min
-// make sure to do this only once across all requests
-if (api.onServer && !api.warmCacheStarted) {
-  api.warmCacheStarted = true
-  warmCache()
-}
-
-function warmCache () {
-  fetchItems((api.cachedIds.top || []).slice(0, 30))
-  setTimeout(warmCache, 1000 * 60 * 15)
-}
-
-function fetch (child) {
+// FETCH
+api.fetch = function (child){
   const cache = api.cachedItems
   if (cache && cache.has(child)) {
     return Promise.resolve(cache.get(child))
@@ -40,25 +32,47 @@ function fetch (child) {
   }
 }
 
-export function fetchIdsByType (type) {
+api.fetchIdsByType = function(type) {
   return api.cachedIds && api.cachedIds[type]
     ? Promise.resolve(api.cachedIds[type])
     : fetch(`${type}stories`)
 }
 
-export function fetchItem (id) {
+api.fetchItem = function(id) {
   return fetch(`item/${id}`)
 }
 
-export function fetchItems (ids) {
+api.fetchItems = function(ids) {
   return Promise.all(ids.map(id => fetchItem(id)))
 }
 
-export function fetchUser (id) {
+api.fetchUser = function(id) {
   return fetch(`user/${id}`)
 }
 
-export function watchList (type, cb) {
+// ADD
+api.add = function(type, data){
+  return new Promise((resolve, reject) => {
+    let key = api.child(type).push().key;
+
+    let now = new Date();
+    data.created_at = now;
+    data.updated_at = now;
+
+    var updates = {};
+    updates[`${type}/${key}`] = data;
+    api.update(updates).then(results => {
+      console.log(results);
+      resolve(results);
+    }, error => {
+      reject(error);
+    })
+  })
+}
+
+
+// WATCH
+api.watchList = function(type, cb) {
   let first = true
   const ref = api.child(`${type}stories`)
   const handler = snapshot => {
@@ -73,3 +87,5 @@ export function watchList (type, cb) {
     ref.off('value', handler)
   }
 }
+
+export default api

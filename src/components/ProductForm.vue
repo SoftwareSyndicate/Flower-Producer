@@ -1,7 +1,8 @@
 <template lang="jade">
   div.product-form
     div.section
-      div.section-header
+      div.section-header(:class="{'closed': !generalOpen}")
+        span.top-border
         h3 General info
         i.material-icons(v-if="!generalOpen", @click="generalOpen = true") keyboard_arrow_down
         i.material-icons(v-else, @click="generalOpen = false") keyboard_arrow_up
@@ -26,7 +27,8 @@
 
 
     div.section
-      div.section-header
+      div.section-header(:class="{'closed': !retailOpen}")
+        span.top-border
         h3 Retail info
         i.material-icons(v-if="!retailOpen", @click="retailOpen = true") keyboard_arrow_down
         i.material-icons(v-else, @click="retailOpen = false") keyboard_arrow_up
@@ -50,7 +52,8 @@
                 s-input(:placeholder="'$'")
 
     div.section
-      div.section-header
+      div.section-header(:class="{'closed': !cannabinoidOpen}")
+        span.top-border
         h3 Cannabinoid & Ingredient info
         i.material-icons(v-if="!cannabinoidOpen", @click="cannabinoidOpen = true") keyboard_arrow_down
         i.material-icons(v-else, @click="cannabinoidOpen = false") keyboard_arrow_up
@@ -73,7 +76,8 @@
 
 
     div.section
-      div.section-header
+      div.section-header(:class="{'closed': !productOpen}")
+        span.top-border
         h3 Product marketing
         i.material-icons(v-if="!productOpen", @click="productOpen = true") keyboard_arrow_down
         i.material-icons(v-else, @click="productOpen = false") keyboard_arrow_up
@@ -89,10 +93,10 @@ export default {
   name: 'AddProductPage',
   data() {
     return {
-      generalOpen: true,
-      retailOpen: true,
-      cannabinoidOpen: true,
-      productOpen: true,
+      generalOpen: false,
+      retailOpen: false,
+      cannabinoidOpen: false,
+      productOpen: false,
       product: {
         name: "New",
         description: "",
@@ -122,16 +126,37 @@ export default {
       align-items center
       display flex
       flex-basis 100%
-      border-bottom solid 2px #e8eaf4
-      padding-bottom 20px
+      flex-wrap wrap
       margin-bottom 20px
+      border-top-left-radius 4px
+      border-bottom-left-radius 4px
+      background-color rgba(255, 255, 255, 0.2)
+      box-shadow inset 0 -1px 0 0 #c3ead6
+      border-left solid 1px #d6dae9
+      border-right solid 1px #d6dae9
+      border-bottom solid 1px #d6dae9
+
+
+      &.closed
+        .top-border
+          background-color #d6dae9
+
+      .top-border
+        flex-basis 100%
+        height 4px
+        background-color #3ed783
+        border-top-left-radius 4px
+        transition background-color .5s ease
 
       h3
+        font-size 14px
         font-weight 500
-        color #1f2532
+        color #4a4e5d
+        padding 20px
 
       i
         margin-left auto
+        margin-right 30px
         color rgba(0,0,0,0.5)
         cursor pointer
         border-radius 4px
