@@ -58,6 +58,7 @@ api.add = function(type, data){
     let now = new Date();
     data.created_at = now;
     data.updated_at = now;
+    data.id = key;
 
     var updates = {};
     updates[`${type}/${key}`] = data;
@@ -72,6 +73,26 @@ api.add = function(type, data){
 
 
 // WATCH
+api.watch = function(type, cb) {
+  let first = true
+  const ref = api.child(type);
+  const handler = snapshot => {
+    cb(snapshot.val())
+    // if (first) {
+    //   first = false
+    // } else {
+    //   cb(snapshot.val())
+    // }
+  }
+  ref.on('value', handler)
+  return () => {
+    ref.off('value', handler)
+  }
+}
+
+
+
+
 api.watchList = function(type, cb) {
   let first = true
   const ref = api.child(`${type}stories`)

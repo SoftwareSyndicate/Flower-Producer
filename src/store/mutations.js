@@ -5,4 +5,9 @@ export default {
   [types.UPDATE_BREADCRUMBS] (state, breadcrumbs) {
     state.breadcrumbs = breadcrumbs;
   },
+  [types.RECEIVE_PRODUCTS] (state, {products}) {
+    console.log(products)
+    state.products = products;
+  },
+
 }

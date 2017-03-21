@@ -4,8 +4,6 @@ import * as getters from './getters';
 import * as actions from './actions';
 import mutations from './mutations';
 
-import { fetchItems, fetchIdsByType, fetchUser } from './api';
-
 Vue.use(Vuex);
 
 const state = {
@@ -18,6 +16,7 @@ const state = {
 
 const store = new Vuex.Store({
   state,
+  actions,
   getters,
   mutations
 });

@@ -24,47 +24,7 @@ export default {
   },
   computed: {
     products(){
-      return [
-        {
-          created_by: {
-
-          },
-          id: 0,
-          name: "Saigon Cinnamon Snickerdoodle Cookie",
-          product_images: ["http://www.thegoodship.com/wp-content/uploads/2016/09/snicker-new.png"],
-          tags: ["Edible", "Organic"] ,
-          created_at: new Date(),
-          likes: 840,
-          comments: 420,
-          thc_content: 10.0,
-        },
-        {
-          created_by: {
-
-          },
-          id: 1,
-          name: "Deep Dark Chocolate Bar",
-          product_images: ["http://www.thegoodship.com/wp-content/uploads/2016/09/deepdark-new.png"],
-          tags: ["Edible", "Organic"] ,
-          created_at: new Date(),
-          likes: 840,
-          comments: 420,
-          thc_content: 10.0
-        },
-        {
-          created_by: {
-
-          },
-          id: 2,
-          name: "Lemon Lime Pastilles",
-          product_images: ["http://www.thegoodship.com/wp-content/uploads/2015/04/packaging_rendering_pastilles_lemon_lime_flat-website.png"],
-          tags: ["Edible", "Organic"] ,
-          created_at: new Date(),
-          likes: 840,
-          comments: 420,
-          thc_content: 2.5
-        }
-      ]
+      return this.$store.getters.products;
     },
     filteredProducts(){
       return this.products;
@@ -73,7 +33,7 @@ export default {
 
     }
   },
-  created: function(){
+  created(){
     this.$store.commit("UPDATE_BREADCRUMBS", [
       {name: 'Products', route: '/products'}
     ]);

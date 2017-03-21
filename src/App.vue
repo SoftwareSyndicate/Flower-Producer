@@ -6,11 +6,11 @@
 
     <div class="right">
       <div class="breadcrumbs-container">
-        <breadcrumbs :crumbs="crumbs"></breadcrumbs>
+        <breadcrumbs></breadcrumbs>
       </div>
 
       <transition name="fade" mode="out-in">
-        <router-view class="view" v-on:set-crumbs="setBreadCrumbs"></router-view>
+        <router-view class="view"></router-view>
       </transition>
     </div>
   </div>
@@ -25,15 +25,8 @@ export default {
     'side-nav': SideNav,
     'breadcrumbs': BreadCrumbs
   },
-  data(){
-    return {
-      crumbs: []
-    }
-  },
-  methods: {
-    setBreadCrumbs(crumbs){
-      this.crumbs = crumbs;
-    }
+  created(){
+    this.$store.dispatch("watchProducts");
   }
 }
 </script>

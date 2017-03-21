@@ -9,12 +9,36 @@ export const getAllProducts = ({ commit }) => {
   });
 };
 
-console.log(api)
-api.add('products', {
-  name: "taco"
-}).then(results =>{
-  console.log("results: ", results)
-})
+// console.log(api)
+// api.add('products', {
+//   name: "taco"
+// }).then(results =>{
+//   console.log("results: ", results)
+// })
+
+export const addProduct =  ({ commit }) => {
+  api.watch("products", results => {
+    let products = [];
+    for(let key in results){
+      results[key].created_at = new Date (results[key].created_at);
+      products.push(results[key]);
+    }
+    commit(types.ADD_PRODUCT, products);
+  });
+};
+
+
+export const watchProducts =  ({ commit }) => {
+  api.watch("products", results => {
+    let products = [];
+    for(let key in results){
+      results[key].created_at = new Date (results[key].created_at);
+      products.push(results[key]);
+    }
+    commit(types.RECEIVE_PRODUCTS, {products});
+  });
+};
+
 // export const sendMessage = ({ commit }, payload) => {
 //   api.createMessage(payload, message => {
 //     commit(types.RECEIVE_MESSAGE, {
