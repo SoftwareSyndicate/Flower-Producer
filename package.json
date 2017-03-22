@@ -13,7 +13,10 @@
   },
   "dependencies": {
     "vue": "^2.1.10",
-    "vue-router": "^2.2.0"
+    "vue-router": "^2.2.0",
+    "firebase": "^3.7.1",
+    "syndicate-ui": "github:softwaresyndicate/syndicate-ui",
+    "vuex": "^2.1.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
@@ -41,6 +44,7 @@
     "html-webpack-plugin": "^2.28.0",
     "http-proxy-middleware": "^0.17.3",
     "inject-loader": "^2.0.1",
+    "jade": "^1.11.0",
     "jade-loader": "^0.8.0",
     "karma": "^1.4.1",
     "karma-coverage": "^1.1.1",
@@ -57,6 +61,7 @@
     "opn": "^4.0.2",
     "ora": "^1.1.0",
     "phantomjs-prebuilt": "^2.1.14",
+    "pug": "^2.0.0-beta11",
     "sass-loader": "^5.0.1",
     "selenium-server": "^3.0.1",
     "semver": "^5.3.0",
@@ -69,7 +74,6 @@
     "vue-loader": "^10.3.0",
     "vue-style-loader": "^2.0.0",
     "vue-template-compiler": "^2.1.10",
-    "vuex": "^2.1.2",
     "vuex-router-sync": "^4.1.2",
     "webpack": "^2.2.1",
     "webpack-bundle-analyzer": "^2.2.1",
