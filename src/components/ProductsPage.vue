@@ -1,37 +1,31 @@
-<template lang="jade">
-  div.products-page
+<template lang="pug">
+div.products-page
+  div.header
+    h2.product-count {{filteredProducts.length}} products available
 
-    div.header
-      h2.product-count {{filteredProducts.length}} products available
+    // div.product-filter
+    //   s-button(:title="'filter'")
 
-      router-link(to="/products/add")
-        s-button(:title="'add new product'")
-
-    div.product-list
-      div.product-container(v-for="product in filteredProducts")
-        product-list-item(:product="product")
+  div.product-list
+    div.product-container(v-for="product in filteredProducts")
+      product-list-item(:product="product")
 </template>
 
 <script>
 import ProductListItem from 'components/ProductListItem'
-import Button from 'components/Button'
-
+import { mapGetters } from 'vuex'
+ 
 export default {
   name: 'ProductPage',
   components: {
     'product-list-item': ProductListItem,
-    's-button': Button
   },
   computed: {
-    products(){
-      return this.$store.getters.products;
-    },
-    filteredProducts(){
-      return this.products;
-    },
-    productFilters(){
-
-    }
+    ...mapGetters([
+      'products',
+      'filteredProducts',
+      'productFilters'
+    ])
   },
   created(){
     this.$store.commit("UPDATE_BREADCRUMBS", [
@@ -57,7 +51,7 @@ export default {
       font-size 20px
       color #1f2532
 
-    a
+    .product-filter
       margin-left auto
 
   .product-list

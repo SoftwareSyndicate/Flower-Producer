@@ -1,6 +1,6 @@
 <template lang="jade">
   div.company-page
-    h1 Company Page
+    h1 Company Info Page comming soon!
 </template>
 
 <script>

@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   div.syndicate-button(@click="onclick()")
     span {{title}}
 </template>
@@ -13,7 +13,7 @@ export default {
     },
     onclick: {
       type: Function,
-      default: null
+      default: () => {} 
     }
   },
   data() {
@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  bg-color = #00e468
+  bg-color = #3ed783
 
   .syndicate-button
     display flex

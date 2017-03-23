@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   div.add-product-page
     div.product-form-container
       product-form :product=product

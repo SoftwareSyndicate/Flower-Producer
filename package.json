@@ -62,6 +62,7 @@
     "ora": "^1.1.0",
     "phantomjs-prebuilt": "^2.1.14",
     "pug": "^2.0.0-beta11",
+    "pug-loader": "^2.3.0",
     "sass-loader": "^5.0.1",
     "selenium-server": "^3.0.1",
     "semver": "^5.3.0",

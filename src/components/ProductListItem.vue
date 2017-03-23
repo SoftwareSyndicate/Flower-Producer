@@ -1,34 +1,34 @@
-<template lang="jade">
-  div.product-list-item
-    div.checkbox-container
-      input(type="checkbox")
+<template lang="pug">
+div.product-list-item
+  div.checkbox-container
+    input(type="checkbox")
 
-    div.item
-      div.img-container
-        img(:src="product.product_images[0]")
+  div.item
+    div.img-container
+      img(:src="product.product_images[0]")
 
-      div.info-container
-        div.top
-          div.description-container
-            h4 {{product.name}}
-            span(v-for="tag in product.tags") {{tag}}
+    div.info-container
+      div.top
+        div.description-container
+          h4 {{product.name}}
+          span(v-for="tag in product.tags") {{tag}}
 
-          div.actions-container
-            div.buttons-container
-              s-button.secondary(:title="'Archive'")
-              router-link(:to="{ name: 'edit-product', params: { id: product.id }}")
-                s-button.secondary(:title="'Edit'")
+        div.actions-container
+          div.buttons-container
+            s-button.secondary(:title="'Archive'")
+            router-link(:to="{ name: 'product', params: { id: product.id }}")
+              s-button.secondary(:title="'Edit'")
 
-        div.bottom
-          div.stats-container
-            div.buttons-container
-              s-button.secondary(:title="'2.4K'")
-              s-button.secondary(:title="'920'")
-              s-button.secondary(:title="'THC 10mg'")
+      div.bottom
+        div.stats-container
+          div.buttons-container
+            s-button.secondary(:title="'2.4K'")
+            s-button.secondary(:title="'920'")
+            s-button.secondary(:title="'THC 10mg'")
 
-          div.meta-container
-            p.created-at Added {{product.created_at.toLocaleDateString()}}
-            img(:src="product.created_by.avatar")
+        div.meta-container
+          p.created-at Added {{product.created_at.toLocaleDateString()}}
+          img(:src="product.created_by.avatar")
 
 
 

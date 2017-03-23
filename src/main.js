@@ -17,6 +17,10 @@ sync(store, router)
 //   Vue.filter(key, filters[key])
 // })
 
+// Hack for now
+// import Button from 'syndicate-ui/src/main'
+// console.log(Button);
+
 // register global components
 import Button from 'components/Button'
 import Input from 'components/Input'

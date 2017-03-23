@@ -11,7 +11,9 @@ const state = {
   sideNavItems: [],
   org: {},
   products: [],
-  activeProduct: null
+  filteredProducts: [],
+  product: {},
+  productId: "",
 };
 
 const store = new Vuex.Store({
