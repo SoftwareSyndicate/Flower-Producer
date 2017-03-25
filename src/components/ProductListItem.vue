@@ -15,16 +15,16 @@ div.product-list-item
 
         div.actions-container
           div.buttons-container
-            s-button.secondary(:title="'Archive'")
+            s-button.secondary(:title="'Archive'", :class=['sm'])
             router-link(:to="{ name: 'product', params: { id: product.id }}")
-              s-button.secondary(:title="'Edit'")
+              s-button.secondary(:title="'Edit'", :class=['sm'])
 
       div.bottom
         div.stats-container
           div.buttons-container
-            s-button.secondary(:title="'2.4K'")
-            s-button.secondary(:title="'920'")
-            s-button.secondary(:title="'THC 10mg'")
+            s-button.secondary(:title="'2.4K'", :class=['sm'])
+            s-button.secondary(:title="'920'", :class=['sm'])
+            s-button.secondary(:title="'THC 10mg'", :class=['sm'])
 
         div.meta-container
           p.created-at Added {{product.created_at.toLocaleDateString()}}
@@ -143,7 +143,7 @@ weird-green = #3ed783
           .buttons-container
             display flex
 
-            .syndicate-button
+            .s-button
               margin-left 10px
 
 
@@ -155,7 +155,7 @@ weird-green = #3ed783
      .stats-container
        .buttons-container
          display flex
-         .syndicate-button
+         .s-button
            margin-right 18px
 
      .meta-container

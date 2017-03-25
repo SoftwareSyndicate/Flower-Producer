@@ -7,9 +7,10 @@ div.breadcrumbs
       
   div.actions
     router-link(:to="{name: 'product', params: {id: 'new'}}", v-if="$route.name === 'products'")
-      s-button(:title="'add new product'")
-    div(v-if="$route.name === 'product'")
-      s-button(:title="'save'", :onclick="save")
+      s-button(:title="'add new product'", :class="['sm', 'primary']")
+
+    s-button(:title="'Cancel'", :onclick="cancel", :class="['sm']", v-if="$route.name === 'product'")
+    s-button(:title="'Save product'", :onclick="save", :class="['sm', 'primary']", v-if="$route.name === 'product'")
     
 </template>
 
@@ -23,6 +24,9 @@ export default {
   methods: {
     save(){
       this.$store.dispatch("saveProduct", {product: this.$store.getters.product})
+    },
+    cancel(){
+      this.$router.back()
     }
   }
 }
@@ -60,6 +64,11 @@ breadcrumbs-height = 60px;
         text-decoration none
 
   .actions
+    display flex
     margin-left auto
+
+    .s-button
+      margin-left 10px
+      box-shadow none
 
 </style>
