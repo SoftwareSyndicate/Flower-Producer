@@ -8,4 +8,11 @@ export default {
   [types.RECEIVE_PRODUCTS] (state, {products}) {
     state.products = products
   },
+  [types.ADD_PRODUCT] (state, {product}) {
+    state.products.push(product)
+  },
+  [types.UPDATE_PRODUCT] (state, {product}) {
+    // TODO Find and update product
+    // state.products.push(product);
+  },
 }

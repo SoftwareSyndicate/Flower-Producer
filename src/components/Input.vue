@@ -1,5 +1,5 @@
 <template lang="jade">
-  input(:placeholder="placeholder", type="text", v-model="model")
+  input(:placeholder="placeholder", type="text", v-model="modelCopy")
 </template>
 
 <script>
@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return {
-
+      modelCopy: this.model
     }
   }
 }

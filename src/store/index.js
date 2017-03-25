@@ -13,7 +13,7 @@ const state = {
   products: [],
   filteredProducts: [],
   product: {},
-  productId: "",
+  filter: {}
 };
 
 const store = new Vuex.Store({

@@ -9,7 +9,7 @@ div.breadcrumbs
     router-link(:to="{name: 'product', params: {id: 'new'}}", v-if="$route.name === 'products'")
       s-button(:title="'add new product'")
     div(v-if="$route.name === 'product'")
-      s-button(:title="'save'")
+      s-button(:title="'save'", :onclick="save")
     
 </template>
 
@@ -19,6 +19,11 @@ export default {
   name: 'BreadCrumbs',
   computed: {
     ...mapGetters (['breadcrumbs'])
+  },
+  methods: {
+    save(){
+      this.$store.dispatch("saveProduct", {product: this.$store.getters.product})
+    }
   }
 }
 </script>

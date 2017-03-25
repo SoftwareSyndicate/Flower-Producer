@@ -1,32 +1,6 @@
 import api from './api';
 import * as types from './mutation-types';
 
-// export const getAllProducts = ({ commit }) => {
-//   api.getAllProducts(products => {
-//     commit(types.SET_PRODUCTS, {
-//       products
-//     });
-//   });
-// };
-
-// console.log(api)
-// api.add('products', {
-//   name: "taco"
-// }).then(results =>{
-//   console.log("results: ", results)
-// })
-
-// export const addProduct =  ({ commit }) => {
-//   api.watch("products", results => {
-//     let products = [];
-//     for(let key in results){
-//       results[key].created_at = new Date (results[key].created_at);
-//       products.push(results[key]);
-//     }
-//     commit(types.ADD_PRODUCT, products);
-//   });
-// };
-
 
 export const watchProducts =  ({ commit }) => {
   api.watch("products", results => {
@@ -39,15 +13,22 @@ export const watchProducts =  ({ commit }) => {
   });
 };
 
-// export const sendMessage = ({ commit }, payload) => {
-//   api.createMessage(payload, message => {
-//     commit(types.RECEIVE_MESSAGE, {
-//       message
-//     });
-//   });
-// };
 
-// export const switchThread = ({ commit }, payload) => {
-//   commit(types.SWITCH_THREAD, payload);
-// };
+export const saveProduct =  ({ commit }, {product}) => {
+  if(!product.id){
+    return api.addItem('products', product).then(results => {
+      commit(types.ADD_PRODUCT, product);
+    });
+  } else {
+    return api.updateItem(product.id, 'products', product).then(results =>{
+      console.log(results);
+      // TODO update this
+      // commit(types.UPDATE_PRODUCT, products);
+    })
+  }
+};
+
+export const setFilter = ({ commit }, filter) => {
+  commit(types.SET_FILTER, filter);
+};
 

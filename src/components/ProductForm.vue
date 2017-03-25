@@ -102,16 +102,14 @@ export default {
       retailOpen: false,
       cannabinoidOpen: false,
       productOpen: false,
-      // product: {
-      //   name: "New",
-      //   description: "",
-      //   wholesale_price: 0.0,
-      //   retail_price: 0.0,
-      //   cannabinoid_profile: "",
-      //   extraction_method: ""
-      // },
     }
   },
+  watch: {
+    product: function(val){
+      console.log("watch")
+      console.log(val);
+    }
+  }
 }
 </script>
 
