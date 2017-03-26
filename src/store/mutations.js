@@ -12,7 +12,12 @@ export default {
     state.products.push(product)
   },
   [types.UPDATE_PRODUCT] (state, {product}) {
-    // TODO Find and update product
-    // state.products.push(product);
+    state.product = product;
   },
+
+  [types.COPY_PRODUCT] (state, {val}) {
+    state.productCopy = val;
+  },
+
+  
 }

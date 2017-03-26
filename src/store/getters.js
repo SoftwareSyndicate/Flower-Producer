@@ -17,7 +17,7 @@ export const breadcrumbs = state => {
         return product.id === state.route.params.id
       })
       if(product){
-        crumbs.push({name: product.name, route: '/products' + product.id})
+        crumbs.push({name: product.name, route: '/products/' + product.id})
       }
     } else {
       crumbs.push({name: 'New', route: '/products/new'})
@@ -30,9 +30,15 @@ export const breadcrumbs = state => {
 // Products
 export const product = state => {
   if(state.route.params && state.route.params.id != 'new'){
-    return state.products.find((product)=>{
+    let product = state.products.find((product)=>{
       return product.id === state.route.params.id
     })
+
+    if(product){
+      return product
+    } else {
+      return {}
+    }
   } else {
     return {}
   }

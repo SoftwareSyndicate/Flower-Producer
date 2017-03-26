@@ -13,7 +13,7 @@ div.product-form
           div.label-container
             span.label Product name
           div.input-container
-            s-input(:placeholder="'Add name...'", :model="product.name")
+            s-input(:placeholder="'Add name...'", :model.sync="product.name", :change="change", :name="'name'")
 
         div.field
           div.label-container
@@ -90,18 +90,34 @@ div.product-form
 <script>
 export default {
   name: 'ProductForm',
-  props: {
+  props: ['product'],
+  created(){
+
+  },
+  watch: {
     product: {
-      type: Object,
-      default: () => {}
+      handler: function(val, old){
+        if(this.first){
+          this.$store.commit("COPY_PRODUCT", {val})
+        }
+        this.first = false;
+      },
+      deep: true
+    }
+  },
+  methods: {
+    change(val){
+      this.product[val.target.name] = val.target.value.trim();
+      // this.$store.commit('UPDATE_PRODUCT', {this.product});
     }
   },
   data() {
     return {
-      generalOpen: false,
-      retailOpen: false,
-      cannabinoidOpen: false,
-      productOpen: false,
+      first: true, 
+      generalOpen: true,
+      retailOpen: true,
+      cannabinoidOpen: true,
+      productOpen: true,
     }
   },
 }

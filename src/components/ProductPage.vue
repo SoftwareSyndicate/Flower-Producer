@@ -1,7 +1,7 @@
 <template lang="pug">
 div.add-product-page
   div.product-form-container
-    product-form(:product="product")
+    product-form(:product.sync="product")
 
 </template>
 
@@ -17,16 +17,10 @@ export default {
   computed: {
     ...mapGetters([
       'product',
-      'products',
     ])
   },
-  watch: {
-    product: function(val){
-      console.log("watch product:", val)
-    }
-  },
   created(){
-    console.log("product", this.product)
+
   },
   methods: {
     save(){

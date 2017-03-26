@@ -6,6 +6,7 @@ export const SET_PRODUCTS = 'PRODUCTS_SET'
 export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS'
 export const ADD_PRODUCT = 'ADD_PRODUCT'
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
+export const COPY_PRODUCT = 'COPY_PRODUCT'
 
 // Filters
 export const SET_FILTER = 'SET_FILTER'

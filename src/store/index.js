@@ -13,6 +13,7 @@ const state = {
   products: [],
   filteredProducts: [],
   product: {},
+  productCopy: {},
   filter: {},
 };
 
@@ -20,7 +21,7 @@ const store = new Vuex.Store({
   state,
   actions,
   getters,
-  mutations
+  mutations,
 });
 
 export default store;
