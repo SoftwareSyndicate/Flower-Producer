@@ -27,11 +27,6 @@ export default {
       'productFilters'
     ])
   },
-  created(){
-    this.$store.commit("UPDATE_BREADCRUMBS", [
-      {name: 'Products', route: '/products'}
-    ]);
-  }
 }
 </script>
 

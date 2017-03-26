@@ -24,9 +24,6 @@ export default {
   components: {
     'side-nav': SideNav,
     'breadcrumbs': BreadCrumbs
-  },
-  created(){
-    this.$store.dispatch("watchProducts");
   }
 }
 </script>

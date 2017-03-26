@@ -104,12 +104,6 @@ export default {
       productOpen: false,
     }
   },
-  watch: {
-    product: function(val){
-      console.log("watch")
-      console.log(val);
-    }
-  }
 }
 </script>
 

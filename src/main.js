@@ -6,6 +6,8 @@ import router from './router'
 import store from './store'
 // import * as filters from './filters'
 
+store.dispatch("watchProducts");
+
 import { sync } from 'vuex-router-sync'
 
 // sync the router with the vuex store.

@@ -14,29 +14,20 @@ export default {
   components: {
     'product-form': ProductForm
   },
-  
   computed: {
     ...mapGetters([
       'product',
+      'products',
     ])
   },
-  created(){
-    let id = this.$route.params.id;
-    if(id === 'new'){
-      this.$store.commit("UPDATE_BREADCRUMBS", [
-        {name: 'Products', route: '/products'},
-        {name: 'Add a Product', route: '/products/new'}
-      ]);
-    } else if(this.product){
-      this.$store.commit("UPDATE_BREADCRUMBS", [
-        {name: 'Products', route: '/products'},
-        {name: this.product.name, route: 'products/' + id}
-      ]);
+  watch: {
+    product: function(val){
+      console.log("watch product:", val)
     }
-
-    console.log(this.product)   
   },
-
+  created(){
+    console.log("product", this.product)
+  },
   methods: {
     save(){
 

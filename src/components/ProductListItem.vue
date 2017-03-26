@@ -157,6 +157,7 @@ weird-green = #3ed783
          display flex
          .s-button
            margin-right 18px
+           box-shadow none
 
      .meta-container
        align-items center
