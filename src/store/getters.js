@@ -1,5 +1,5 @@
 // Breadcrumbs
-export const breadcrumbs = state => {
+export const crumbs = state => {
   let crumbs = []
   switch (state.route.name){
   case "company":
@@ -18,6 +18,8 @@ export const breadcrumbs = state => {
       })
       if(product){
         crumbs.push({name: product.name, route: '/products/' + product.id})
+      } else {
+        crumbs.push({name: 'New', route: '/products/new'})
       }
     } else {
       crumbs.push({name: 'New', route: '/products/new'})
@@ -26,6 +28,9 @@ export const breadcrumbs = state => {
   }
   return crumbs
 }
+
+// Nav
+export const nav_items = state => state.nav_items;
 
 // Products
 export const product = state => {
@@ -44,6 +49,8 @@ export const product = state => {
   }
 }
 
+
+export const productCopy = state => state.productCopy;
 export const products = state => state.products;
 
 export const filteredProducts = state => {
@@ -51,3 +58,5 @@ export const filteredProducts = state => {
   return state.products;
 }
 
+// Org
+export const org = state => state.org;

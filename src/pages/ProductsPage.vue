@@ -35,6 +35,7 @@ export default {
   display flex
   flex-basis 100%
   flex-wrap wrap
+  padding 4em
 
   .header
     display flex
@@ -45,6 +46,7 @@ export default {
     .product-count
       font-size 20px
       color #1f2532
+      font-weight normal  
 
     .product-filter
       margin-left auto

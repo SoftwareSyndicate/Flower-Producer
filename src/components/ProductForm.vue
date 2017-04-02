@@ -9,21 +9,21 @@ div.product-form
 
     transition(name="open", mode="out-in", v-if="generalOpen")
       div.section-body
-        div.field
+        div.field.name
           div.label-container
             span.label Product name
           div.input-container
-            s-input(:placeholder="'Add name...'", :model.sync="product.name", :change="change", :name="'name'")
+            s-input(:placeholder="'Add name...'", :model.sync="product.name", :change="onNameChange")
 
-        div.field
+        div.field.description
           div.label-container
             span.label Short product description
 
           div.description-container
             span.description But I must explain to you how all this mistaken idea of denouncing of a pleasure and praising pain was born and I will give you a complete account of the system.
 
-          div.input-container
-            s-textarea(:placeholder="'Add description...'", :model.sync="product.description")
+          div.input-container.description
+            s-textarea(:placeholder="'Add description...'", :model.sync="product.description", :change="onDescriptionChange")
 
 
   div.section
@@ -90,26 +90,15 @@ div.product-form
 <script>
 export default {
   name: 'ProductForm',
-  props: ['product'],
-  created(){
-
-  },
-  watch: {
-    product: {
-      handler: function(val, old){
-        if(this.first){
-          this.$store.commit("COPY_PRODUCT", {val})
-        }
-        this.first = false;
-      },
-      deep: true
-    }
-  },
+  props: ['product', 'updates'],
+  created(){},
   methods: {
-    change(val){
-      this.product[val.target.name] = val.target.value.trim();
-      // this.$store.commit('UPDATE_PRODUCT', {this.product});
-    }
+    onNameChange(val){
+      this.updates.name = val.target.value.trim();
+    },
+    onDescriptionChange(val){
+      this.updates.description = val.target.value.trim();
+    },
   },
   data() {
     return {
@@ -128,6 +117,10 @@ export default {
   display flex
   flex-basis 100%
   flex-wrap wrap
+
+  .row
+    display flex
+    flex-basis 100%
 
   .section
     display flex
@@ -148,7 +141,6 @@ export default {
       box-shadow inset 0 -1px 0 0 #c3ead6
       border-left solid 1px #d6dae9
       border-bottom solid 1px #d6dae9
-
 
       &.closed
         box-shadow none
@@ -193,6 +185,13 @@ export default {
         flex-basis 100%
         margin-bottom 30px
 
+
+        &.name   
+          flex-basis 50%
+
+        &.description
+          flex-basis 75%          
+
         .label-container
           display flex
           flex-basis 100%
@@ -217,7 +216,11 @@ export default {
 
 
         .input-container
-          flex-basis 50%
+          display flex
+          flex-basis 100%
 
+
+
+            
 
 </style>

@@ -1,29 +1,42 @@
-<template lang="html">
-  <div id="app">
-    <div class="left">
-      <side-nav></side-nav>
-    </div>
+<template lang="pug">
+div#app
+  div.nav-container
+    s-nav(:items="nav_items", :brand="org.name")
 
-    <div class="right">
-      <div class="breadcrumbs-container">
-        <breadcrumbs></breadcrumbs>
-      </div>
+  div.content-container
+    div.breadcrumbs-container
+      s-breadcrumbs(:crumbs="crumbs")
+        div.actions(slot="actions")
+          div.product-actions(v-if="$route.name === 'product'")
+            s-button(title="Cancel", :onclick="cancel")
+            s-button(title="Save Product", :classes="['primary']", :onclick="save")
+          div.product-actions(v-if="$route.name === 'products'")
+            router-link(:to="{ name: 'product', params: { id: 'new' }}")
+              s-button(title="Add a new Product", :classes="['primary']")
+              
+    div.view-container
+      transition(name="fade", mode="out-in")
+        router-view.vue
 
-      <transition name="fade" mode="out-in">
-        <router-view class="view"></router-view>
-      </transition>
-    </div>
-  </div>
 </template>
 
 <script>
-import SideNav from 'components/SideNav'
-import BreadCrumbs from 'components/BreadCrumbs'
+import { mapGetters } from 'vuex'
 export default {
   name: 'App',
-  components: {
-    'side-nav': SideNav,
-    'breadcrumbs': BreadCrumbs
+  computed: mapGetters ({
+    nav_items: 'nav_items',
+    crumbs: 'crumbs',
+    org: 'org'
+  }),
+  methods: {
+    cancel(){
+      this.$router.back();
+    },
+    save(){
+      console.log("save")
+      console.log(this.$store)
+    },
   }
 }
 </script>
@@ -41,43 +54,52 @@ body
 h1, h2, h3, h4, h5, h6, p, a, span
   margin 0px
   padding 0px
-  color rgba(0, 0, 0, .5)
-  font-weight normal
+  color rgba(0, 0, 0, .5) !default
+  font-weight normal !default
   text-decoration none
   line-height 1em
 
+a
+ color rgba(0, 0, 0, .5) 
+
+
 #app
-  font-family 'Avenir', Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  display flex
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
   height 100%
+  display flex
+  flex-wrap wrap
 
-  .row
+  .nav-container
     display flex
-    flex-basis 100%
+    flex-basis 15%  
 
-  .left
-    flex-basis 15%
-    border-right solid 1px #e7eaf3
-    min-height 100vh
-
-  .right
-    flex-basis 85%
-
+  .content-container
+    flex-basis 85%  
+    flex-wrap wrap  
+    
     .breadcrumbs-container
-      border-bottom solid 1px #e7eaf3
+      flex-basis 100%
 
-    .fade-enter-active, .fade-leave-active
-      transition all .2s ease
+      .actions
+        display flex
 
-    .fade-enter, .fade-leave-active
-      opacity 0
+        .product-actions
+          display flex
+          .s-button
+            margin-left 1em
 
-    .view
-      margin 0 auto
-      position relative
-      padding 60px
+    .view-container
+      flex-basis 100%
+      padding 0em !important
+
+      .fade-enter-active, .fade-leave-active
+        transition all .2s ease
+
+      .fade-enter, .fade-leave-active
+        opacity 0
+
 
 </style>

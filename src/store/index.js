@@ -3,18 +3,22 @@ import Vuex from 'vuex';
 import * as getters from './getters';
 import * as actions from './actions';
 import mutations from './mutations';
+import nav_items from './navItems'
 
 Vue.use(Vuex);
 
 const state = {
-  breadcrumbs: [],
-  sideNavItems: [],
+  crumbs: [],
   org: {},
   products: [],
   filteredProducts: [],
   product: {},
   productCopy: {},
   filter: {},
+  org: {
+    name: 'Flower'
+  },
+  nav_items: nav_items
 };
 
 const store = new Vuex.Store({

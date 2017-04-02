@@ -15,16 +15,16 @@ div.product-list-item
 
         div.actions-container
           div.buttons-container
-            s-button.secondary(:title="'Archive'", :class=['sm'])
+            s-button(:title="'Archive'", :class=['sm'])
             router-link(:to="{ name: 'product', params: { id: product.id }}")
-              s-button.secondary(:title="'Edit'", :class=['sm'])
+              s-button(:title="'Edit'", :class=['sm'])
 
       div.bottom
         div.stats-container
           div.buttons-container
-            s-button.secondary(:title="'2.4K'", :class=['sm'])
-            s-button.secondary(:title="'920'", :class=['sm'])
-            s-button.secondary(:title="'THC 10mg'", :class=['sm'])
+            s-button(:title="'2.4K'", :class=['sm'])
+            s-button(:title="'920'", :class=['sm'])
+            s-button(:title="'THC 10mg'", :class=['sm'])
 
         div.meta-container
           p.created-at Added {{product.created_at.toLocaleDateString()}}

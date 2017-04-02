@@ -1,25 +1,42 @@
 <template lang="pug">
-  div.add-product-page
-    div.product-form-container
-      product-form :product=product
+div#add-product-page
+  div.product-form-container
+    product-form(:product.sync="product", :updates.sync="updates")
 
-    s-button(title="Save", :onclick="save")
 </template>
 
 <script>
 import ProductForm from 'components/ProductForm'
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'AddProductPage',
   components: {
     'product-form': ProductForm
   },
-  created(){
-    this.$store.commit("UPDATE_BREADCRUMBS", [
-      {name: 'Products', route: '/products'},
-      {name: 'Add a Product', route: '/products/add'}
-    ]);
+  computed: {
+    ...mapGetters([
+      'product',
+    ])
   },
-
+  watch: {
+    updates: {
+      handler: function(val){
+        console.log("halp")
+        console.log(val)
+        this.$store.commit("COPY_PRODUCT", val)        
+      },
+      deep: true
+    }
+  },
+  data(){
+    return {
+      updates: {
+        name: "",
+        description: ""
+      }
+    }
+  },
   methods: {
     save(){
 
@@ -29,16 +46,14 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
-.view
-  margin 0px
-  padding-right 0px !important
-
-.add-product-page
+  
+#add-product-page
   display flex
   flex-basis 100%
   flex-wrap wrap
-
+  padding-top 3em
+  padding-left 3em
+  
   .nav
     background-color rgba(0, 0, 0, .05)
     display flex

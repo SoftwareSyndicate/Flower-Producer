@@ -1,16 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-// Home
-import HomePage from 'components/HomePage';
 
-//Company
-import CompanyPage from 'components/CompanyPage';
-
-//Products
-import ProductsPage from 'components/ProductsPage';
-import AddProductPage from 'components/AddProductPage';
-import ProductPage from 'components/ProductPage';
+import * as Pages from '../pages'
 
 Vue.use(Router);
 
@@ -23,17 +15,17 @@ export default new Router({
     {
       path: '/company',
       name: 'company',
-      component: CompanyPage,
+      component: Pages.CompanyPage,
     },
     {
       path: '/products',
       name: 'products',
-      component: ProductsPage,
+      component: Pages.ProductsPage,
     },
     {
       path: '/products/:id',
       name: 'product',
-      component: ProductPage,
+      component: Pages.ProductPage,
     },
   ]
 });

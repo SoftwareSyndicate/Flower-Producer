@@ -15,8 +15,10 @@ export default {
     state.product = product;
   },
 
-  [types.COPY_PRODUCT] (state, {val}) {
-    state.productCopy = val;
+  [types.COPY_PRODUCT] (state, val) {
+    console.log("COPY PRODUCT")
+    console.log(val)
+    state.productCopy = Object.assign({}, val)
   },
 
   

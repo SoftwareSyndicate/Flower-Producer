@@ -1,42 +1,37 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App'
+import App from './App.vue'
 import router from './router'
 import store from './store'
+
 // import * as filters from './filters'
-
-
-// Immediately send request to get all products
-store.dispatch("watchProducts");
-
-import { sync } from 'vuex-router-sync'
 
 // sync the router with the vuex store.
 // this registers `store.state.route`
+import { sync } from 'vuex-router-sync'
 sync(store, router)
 
-// register global utility filters.
-// Object.keys(filters).forEach(key => {
-//   Vue.filter(key, filters[key])
-// })
+// TODO -> remove later
+// Immediately send request to get all products
+store.dispatch("watchProducts");
 
-// Hack for now
-import * as UI from 'syndicate-ui'
 
-// register global components
+// Register Components Globally
+import UI from 'syndicate-ui/src/main'
+
+Vue.component('s-breadcrumbs', UI.BreadCrumbs)
 Vue.component('s-button', UI.Button)
 Vue.component('s-input', UI.Input)
 Vue.component('s-textarea', UI.TextArea)
 Vue.component('s-select', UI.Select)
+Vue.component('s-nav', UI.Nav)
+Vue.component('s-tag', UI.Tag)
+Vue.component('s-checkbox', UI.Checkbox)
 
-
-/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
-  template: '<App/>',
-  components: { App }
+  render: h => h(App)
 })
+
 
