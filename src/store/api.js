@@ -27,8 +27,7 @@ api.addItem = function(type, data){
     var updates = {};
     updates[`${type}/${key}`] = data;
     api.update(updates).then(results => {
-      console.log(results);
-      resolve(results);
+      resolve(data);
     }, error => {
       reject(error);
     })
@@ -37,8 +36,8 @@ api.addItem = function(type, data){
 
 // Update
 api.updateItem = function(id, type, data){
-  console.log("data: ", data);
-  console.log("args: ", arguments);
+  // console.log("data: ", data);
+  // console.log("args: ", arguments);
   return new Promise((resolve, reject) => {
     let key = id;
 
@@ -47,7 +46,7 @@ api.updateItem = function(id, type, data){
 
     var updates = {};
     updates[`${type}/${key}`] = data;
-    api.update(updates).then(results => {
+    return api.update(updates).then(results => {
       console.log(results);
       resolve(results);
     }, error => {

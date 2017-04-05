@@ -13,7 +13,7 @@ div.product-form
           div.label-container
             span.label Product name
           div.input-container
-            s-input(:placeholder="'Add name...'", :model.sync="product.name", :change="onNameChange")
+            s-input(:placeholder="'Add name...'", :model="product.name", :change="onNameChange")
 
         div.field.description
           div.label-container
@@ -23,7 +23,7 @@ div.product-form
             span.description But I must explain to you how all this mistaken idea of denouncing of a pleasure and praising pain was born and I will give you a complete account of the system.
 
           div.input-container.description
-            s-textarea(:placeholder="'Add description...'", :model.sync="product.description", :change="onDescriptionChange")
+            s-textarea(:placeholder="'Add description...'", :model="product.description", :change="onDescriptionChange")
 
 
   div.section
@@ -90,7 +90,16 @@ div.product-form
 <script>
 export default {
   name: 'ProductForm',
-  props: ['product', 'updates'],
+  props: {
+    product: {
+      type: Object,
+      default: () => {}
+    },
+    updates: {
+      type: Object,
+      default: () => {}
+    }
+  },
   created(){},
   methods: {
     onNameChange(val){

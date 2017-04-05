@@ -1,4 +1,4 @@
-<template lang="jade">
+<template lang="pug">
   div.company-page
     h1 Company Info Page comming soon!
 </template>

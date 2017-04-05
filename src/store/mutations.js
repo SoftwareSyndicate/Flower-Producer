@@ -11,15 +11,22 @@ export default {
   [types.ADD_PRODUCT] (state, {product}) {
     state.products.push(product)
   },
-  [types.UPDATE_PRODUCT] (state, {product}) {
-    state.product = product;
+
+  ["PRODUCT_UPDATE_SUCCESS"] (state) {
+    // console.log("PRODUCT UPDATED");
   },
 
-  [types.COPY_PRODUCT] (state, val) {
-    console.log("COPY PRODUCT")
-    console.log(val)
-    state.productCopy = Object.assign({}, val)
+  ["PRODUCT_UPDATE_FAIL"] (state, saved_product) {
+    // console.log("PRODUCT UPDATE FAILED");
+    state.product = Object.assign({}, saved_product)
   },
 
-  
+  ["APPLY_PRODUCT_UPDATES"] (state, updates) {
+    // console.log("updates: ", updates)
+    state.product = Object.assign(state.product, updates)
+  },
+
+  ["SET_PRODUCT"] (state, val) {
+    state.product = val
+  },
 }

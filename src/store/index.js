@@ -13,8 +13,8 @@ const state = {
   products: [],
   filteredProducts: [],
   product: {},
-  productCopy: {},
-  filter: {},
+  productUpdates: {},
+  productFilters: {},
   org: {
     name: 'Flower'
   },

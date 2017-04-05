@@ -27,15 +27,16 @@ export default {
   computed: mapGetters ({
     nav_items: 'nav_items',
     crumbs: 'crumbs',
-    org: 'org'
+    org: 'org',
   }),
   methods: {
     cancel(){
       this.$router.back();
     },
     save(){
-      console.log("save")
-      console.log(this.$store)
+      this.$store.dispatch('saveProduct').then(results => {
+        this.$router.back();
+      });
     },
   }
 }

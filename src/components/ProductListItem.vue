@@ -5,7 +5,7 @@ div.product-list-item
 
   div.item
     div.img-container
-      img(:src="product.product_images[0]")
+      img(v-if="product.product_images", :src="product.product_images[0]")
 
     div.info-container
       div.top
@@ -28,7 +28,7 @@ div.product-list-item
 
         div.meta-container
           p.created-at Added {{product.created_at.toLocaleDateString()}}
-          img(:src="product.created_by.avatar")
+          img(v-if="product.created_by", :src="product.created_by.avatar")
 
 
 

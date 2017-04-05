@@ -14,16 +14,20 @@ export const watchProducts =  ({ commit }) => {
 };
 
 
-export const saveProduct =  ({ commit }, {product}) => {
+export const saveProduct =  ({commit, state}) => {
+  // Save product state in case API Request Fails
+  const saved_product = state.product
+  commit("APPLY_PRODUCT_UPDATES", state.productUpdates)
+  let product = state.product
   if(!product.id){
     return api.addItem('products', product).then(results => {
-      commit(types.ADD_PRODUCT, product);
+      // commit(types.ADD_PRODUCT, results);
     });
   } else {
     return api.updateItem(product.id, 'products', product).then(results =>{
-      console.log(results);
-      // TODO update this
-      // commit(types.UPDATE_PRODUCT, products);
+      commit("PRODUCT_UPDATE_SUCCESS")
+    }, error => {
+      commit("PRODUCT_UPDATE_FAIL", saved_product)
     })
   }
 };

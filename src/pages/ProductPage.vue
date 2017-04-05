@@ -1,7 +1,7 @@
 <template lang="pug">
 div#add-product-page
   div.product-form-container
-    product-form(:product.sync="product", :updates.sync="updates")
+    product-form(:product="product", :updates="productUpdates")
 
 </template>
 
@@ -10,37 +10,33 @@ import ProductForm from 'components/ProductForm'
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'AddProductPage',
+  name: 'ProductPage',
   components: {
     'product-form': ProductForm
   },
   computed: {
     ...mapGetters([
       'product',
+      'productUpdates'
     ])
   },
   watch: {
-    updates: {
+    product: {
       handler: function(val){
-        console.log("halp")
-        console.log(val)
-        this.$store.commit("COPY_PRODUCT", val)        
+        if(this.first){
+          this.$store.commit('SET_PRODUCT', val)
+        }
+        this.first = false;
       },
-      deep: true
     }
   },
   data(){
     return {
-      updates: {
-        name: "",
-        description: ""
-      }
+      first: true 
     }
   },
-  methods: {
-    save(){
-
-    }
+  created(){
+    this.$store.commit('SET_PRODUCT', this.product)
   }
 }
 </script>
