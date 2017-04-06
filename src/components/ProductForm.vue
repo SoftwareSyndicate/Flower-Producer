@@ -20,10 +20,26 @@ div.product-form
             span.label Short product description
 
           div.description-container
-            span.description But I must explain to you how all this mistaken idea of denouncing of a pleasure and praising pain was born and I will give you a complete account of the system.
+            span.description ***Needs update  But I must explain to you how all this mistaken idea of denouncing of a pleasure and praising pain was born and I will give you a complete account of the system.
 
           div.input-container.description
             s-textarea(:placeholder="'Add description...'", :model="product.description", :change="onDescriptionChange")
+
+        div.field.images
+          div.label-container
+            span.label Product Images
+
+          div.description-container
+            span.description ***Needs update  But I must explain to you how all this mistaken idea of denouncing of a pleasure and praising pain was born and I will give you a complete account of the system.
+
+          div.add-image-container
+            p Drag and drop an image or 
+              u click to upload
+              input(type="file", @change="onFileChange")
+
+          div.product-images-container(v-if="product.product_images && product.product_images.length")
+            div.product-image-container(v-for="image in product.product_images")
+              img(:src="image", alt="product image" )
 
 
   div.section
@@ -36,20 +52,20 @@ div.product-form
     transition(name="open", mode="out-in", v-if="retailOpen")
       div.section-body
         div.row
-          div.field
+          div.field.wholesale
             div.label-container
               span.label Wholesale pricing
 
             div.input-container
-              s-input(:placeholder="'$'")
+              s-input(:placeholder="'$'", :model="product.wholesale_price", :change="onWholeSalePriceChange", type="'number'" )
 
 
-          div.field
+          div.field.retail
             div.label-container
               span.label Retail pricing
 
             div.input-container
-              s-input(:placeholder="'$'")
+              s-input(:placeholder="'$'", :model="product.retail_price", :change="onRetailPriceChange", type="'number'")
 
   div.section
     div.section-header(:class="{'closed': !cannabinoidOpen}", @click="cannabinoidOpen = !cannabinoidOpen")
@@ -107,6 +123,36 @@ export default {
     },
     onDescriptionChange(val){
       this.updates.description = val.target.value.trim();
+    },
+    onWholeSalePriceChange(val){
+      this.updates.wholesale_price = val.target.value.trim();
+    },
+    onRetailPriceChange(val){
+      this.updates.retail_price = val.target.value.trim();
+    },
+    onFileChange(e){
+      console.log("changing")
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length)
+        return;
+      this.createImage(files[0]);
+    },
+    createImage(file) {
+      var image = new Image();
+      var reader = new FileReader();
+      var vm = this;
+      console.log(file)
+      reader.onload = (e) => {
+        console.log(e.target.result)
+        if(this.product.product_images){
+          this.product.product_images.push(e.target.result)
+        } else {
+          this.product.product_images = [e.target.result]
+        }
+
+        vm.image = e.target.result;
+      };
+      reader.readAsDataURL(file);
     },
   },
   data() {
@@ -199,8 +245,54 @@ export default {
           flex-basis 50%
 
         &.description
-          flex-basis 75%          
+          flex-basis 75%
 
+        &.images
+          flex-wrap wrap
+          .add-image-container
+            cursor pointer
+            display flex
+            flex-basis 75%
+            background-color #fafbff
+            border dashed 1px #d6dae9
+            height 100px
+            border-radius 4px
+            justify-content center
+            align-items center
+            position relative
+            margin-bottom 1em
+            
+            input
+              cursor pointer
+              opacity 0
+              width 100%
+              height 100%
+              top 0px
+              left 0px
+              position absolute
+
+          .product-images-container
+            display flex
+            flex-basis 75%
+            border solid 1px #d6dae9
+            border-radius 4px
+            
+            .product-image-container
+              width 150px
+              padding 1em
+              
+              img
+                height 110px
+
+
+        &.wholesale
+          flex-basis 25%
+          margin-right 1em
+
+        &.retail
+          flex-basis 25%
+          margin-right 1em
+                        
         .label-container
           display flex
           flex-basis 100%

@@ -47,7 +47,6 @@ api.updateItem = function(id, type, data){
     var updates = {};
     updates[`${type}/${key}`] = data;
     return api.update(updates).then(results => {
-      console.log(results);
       resolve(results);
     }, error => {
       reject(error);
