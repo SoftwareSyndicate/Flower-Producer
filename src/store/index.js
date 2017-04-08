@@ -14,6 +14,7 @@ const state = {
   filteredProducts: [],
   product: {},
   productUpdates: {},
+  productCopy: {},
   productFilters: {},
   org: {
     name: 'Flower'

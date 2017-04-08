@@ -99,8 +99,7 @@ weird-green = #3ed783
 
       img
         height 70%
-        width auto
-
+        
     .info-container
       flex-grow 1
       display flex

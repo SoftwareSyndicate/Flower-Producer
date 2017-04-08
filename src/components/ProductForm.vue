@@ -109,50 +109,57 @@ export default {
   props: {
     product: {
       type: Object,
-      default: () => {}
+      default:  {
+        name: "",
+        description: "",
+        product_images: [""]
+      }
     },
-    updates: {
-      type: Object,
-      default: () => {}
-    }
   },
   created(){},
   methods: {
     onNameChange(val){
-      this.updates.name = val.target.value.trim();
+      this.product.name = val.target.value.trim();
     },
     onDescriptionChange(val){
-      this.updates.description = val.target.value.trim();
+      this.product.description = val.target.value.trim();
     },
     onWholeSalePriceChange(val){
-      this.updates.wholesale_price = val.target.value.trim();
+      this.product.wholesale_price = val.target.value.trim();
     },
     onRetailPriceChange(val){
-      this.updates.retail_price = val.target.value.trim();
+      this.product.retail_price = val.target.value.trim();
     },
     onFileChange(e){
-      console.log("changing")
       var files = e.target.files || e.dataTransfer.files;
       if (!files.length)
         return;
       this.createImage(files[0]);
     },
     createImage(file) {
-      var image = new Image();
-      var reader = new FileReader();
-      var vm = this;
-      console.log(file)
-      reader.onload = (e) => {
-        console.log(e.target.result)
-        if(this.product.product_images){
-          this.product.product_images.push(e.target.result)
-        } else {
-          this.product.product_images = [e.target.result]
-        }
+      // var image = new Image();
+      // var reader = new FileReader();
+      // var vm = this;
+      // reader.onload = (e) => {
+      //   if(this.product.product_images){
+      //     this.product.product_images.push(e.target.result)
+      //   } else {
+      //     this.product.product_images = [e.target.result]
+      //   }
 
-        vm.image = e.target.result;
-      };
-      reader.readAsDataURL(file);
+      //   vm.image = e.target.result;
+      // };
+      // reader.readAsDataURL(file);
+      this.$store.dispatch('uploadFile', {
+        file: file
+      }).then(results => {
+        console.log(results)
+        if(this.product.product_images){
+          this.product.product_images.push(results.downloadURL);
+        } else {
+          this.product.product_images = [results.downloadURL]
+        }
+      });
     },
   },
   data() {
@@ -278,11 +285,14 @@ export default {
             border-radius 4px
             
             .product-image-container
+              display flex
+              justify-content center
+              align-items center
               width 150px
               padding 1em
               
               img
-                height 110px
+                width: 100%
 
 
         &.wholesale

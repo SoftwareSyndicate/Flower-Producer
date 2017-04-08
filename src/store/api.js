@@ -1,4 +1,4 @@
-import Firebase from 'firebase/app'
+import Firebase from 'firebase'
 import 'firebase/database'
 
 const config = {
@@ -12,7 +12,7 @@ const version = '/v0'
 Firebase.initializeApp(config)
 
 const api = Firebase.database().ref(version)
-
+const storage = Firebase.storage().ref(version)
 
 // ADD
 api.addItem = function(type, data){
@@ -72,6 +72,15 @@ api.watch = function(type, cb) {
     ref.off('value', handler)
   }
 }
+
+api.uploadFile = function(file){
+  return storage.child('images/' + file.name).put(file).then(results => {
+    return results;
+  }, error => {
+    return error;
+  });
+}
+
 
 
 export default api

@@ -21,12 +21,17 @@ export default {
     state.product = Object.assign({}, saved_product)
   },
 
-  ["APPLY_PRODUCT_UPDATES"] (state, updates) {
+  ["APPLY_PRODUCT_UPDATES"] (state, product) {
     // console.log("updates: ", updates)
-    state.product = Object.assign(state.product, updates)
+    state.product = Object.assign({}, product)
   },
 
   ["SET_PRODUCT"] (state, val) {
     state.product = val
   },
+
+  ["COPY_PRODUCT"] (state, product) {
+    state.productCopy = Object.assign({}, product)
+  },
+
 }

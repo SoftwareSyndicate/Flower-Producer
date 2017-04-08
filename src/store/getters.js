@@ -50,6 +50,7 @@ export const product = state => {
 }
 
 export const productUpdates = state => state.productUpdates
+export const productCopy = state => state.productCopy
 export const products = state => state.products
 export const productFilters = state => state.productFilters
 

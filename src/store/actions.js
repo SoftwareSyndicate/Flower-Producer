@@ -17,7 +17,7 @@ export const watchProducts =  ({ commit }) => {
 export const saveProduct =  ({commit, state}) => {
   // Save product state in case API Request Fails
   const saved_product = state.product
-  commit("APPLY_PRODUCT_UPDATES", state.productUpdates)
+  commit("APPLY_PRODUCT_UPDATES", state.productCopy)
   let product = state.product
   if(!product.id){
     return api.addItem('products', product).then(results => {
@@ -36,3 +36,11 @@ export const setFilter = ({ commit }, filter) => {
   commit(types.SET_FILTER, filter);
 };
 
+
+export const uploadFile = ({ commit }, {file}) => {
+  return api.uploadFile(file).then(results =>{
+    return results;
+  }, error => {
+    return error;
+  })
+};

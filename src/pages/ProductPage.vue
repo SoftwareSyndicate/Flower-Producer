@@ -1,7 +1,7 @@
 <template lang="pug">
 div#add-product-page
   div.product-form-container
-    product-form(:product="product", :updates="productUpdates")
+    product-form(:product="productCopy")
 
 </template>
 
@@ -17,7 +17,7 @@ export default {
   computed: {
     ...mapGetters([
       'product',
-      'productUpdates'
+      'productCopy'
     ])
   },
   watch: {
@@ -25,6 +25,7 @@ export default {
       handler: function(val){
         if(this.first){
           this.$store.commit('SET_PRODUCT', val)
+          this.$store.commit('COPY_PRODUCT', val)
         }
         this.first = false;
       },
@@ -36,7 +37,11 @@ export default {
     }
   },
   created(){
-    this.$store.commit('SET_PRODUCT', this.product)
+    if(this.product.id){
+      this.$store.commit('SET_PRODUCT', this.product)
+      this.$store.commit('COPY_PRODUCT', this.product)
+      this.first = false;
+    }
   }
 }
 </script>
