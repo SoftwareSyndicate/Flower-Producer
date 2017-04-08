@@ -35,8 +35,9 @@ export default {
     },
     save(){
       this.$store.dispatch('saveProduct').then(results => {
-        this.$router.back();
+
       });
+      this.$router.back();
     },
   }
 }

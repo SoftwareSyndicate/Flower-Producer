@@ -41,6 +41,10 @@ export default {
       this.$store.commit('SET_PRODUCT', this.product)
       this.$store.commit('COPY_PRODUCT', this.product)
       this.first = false;
+    } else {
+      this.$store.commit('COPY_PRODUCT', {
+        productImages: []
+      })
     }
   }
 }
