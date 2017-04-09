@@ -43,7 +43,7 @@ export default {
       this.first = false;
     } else {
       this.$store.commit('COPY_PRODUCT', {
-        productImages: []
+        product_images: []
       })
     }
   }

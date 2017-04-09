@@ -62,7 +62,7 @@ div.product-form
 
           div.field.retail
             div.label-container
-              span.label Retail pricing
+              span.label Suggested Retail pricing (MSRP)
 
             div.input-container
               s-input(:placeholder="'$'", :model="product.retail_price", :change="onRetailPriceChange", type="'number'")
@@ -112,7 +112,7 @@ export default {
       default:  {
         name: "",
         description: "",
-        product_images: [""]
+        product_images: []
       }
     },
   },
@@ -153,7 +153,6 @@ export default {
       this.$store.dispatch('uploadFile', {
         file: file
       }).then(results => {
-        console.log(results)
         if(this.product.product_images){
           this.product.product_images.push(results.downloadURL);
         } else {
