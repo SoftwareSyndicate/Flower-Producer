@@ -1,7 +1,7 @@
 <template lang="pug">
 div#app
   div.nav-container
-    s-nav(:items="nav_items", :brand="org.name")
+    s-side-nav(:items="nav_items", :brand="org.name")
 
   div.content-container
     div.breadcrumbs-container

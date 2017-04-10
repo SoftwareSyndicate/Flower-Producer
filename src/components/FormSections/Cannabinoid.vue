@@ -1,65 +1,57 @@
 <template lang="pug">
-div.product-form
+div.cannabinoid
   div.section
-    div.section-header(:class="{'closed': !generalOpen}", @click="generalOpen = !generalOpen")
+    div.section-header(:class="{'closed': !open}", @click="open = !open")
       span.top-border
-      h3 Genaral Info
-      i.material-icons(v-if="!generalOpen") keyboard_arrow_down
+      h3 Cannabinoid & Ingredient info
+      i.material-icons(v-if="!open") keyboard_arrow_down
       i.material-icons(v-else) keyboard_arrow_up
 
-      
-    transition(name="open", mode="out-in", v-if="generalOpen")
+    transition(name="open", mode="out-in", v-if="open")
       div.section-body
-        general-section(:product="product")
+        div.row
+          div.field
+            div.label-container
+              span.label Cannabinoid profile
+            div.input-container
+              s-select(:placeholder="'Select profile...'", :items="['Sativa', 'Indica', 'Hybrid']", :model="product.cannabinoid_profile")
+
+        div.row
+          div.field
+            div.label-container
+              span.label Extraction method
+            div.input-container
+              s-select(:placeholder="'Select method...'", :items="['Ethanol Extraction']", :model="product.extraction_method")
 
 
-        
-  retail-section(:product="product")
-  cannabinoid-section(:product="product")
-  marketing-section(:product="product")
+
 </template>
 
 <script>
-import GeneralSection from './FormSections/General'
-import RetailSection from './FormSections/Retail'
-import CannabinoidSection from './FormSections/Cannabinoid'
-import MarketingSection from './FormSections/Marketing'
-  
 export default {
-  name: 'ProductForm',
-  components: {
-    GeneralSection,
-    RetailSection,
-    CannabinoidSection,
-    MarketingSection
-  },
+  name: 'CannabinoidSection',
   props: {
     product: {
       type: Object,
       default:  {
-        name: "",
-        description: "",
-        product_images: []
+
       }
     },
   },
   created(){},
   methods: {
+    
   },
   data() {
     return {
-      first: true, 
-      generalOpen: true,
-      retailOpen: true,
-      cannabinoidOpen: true,
-      productOpen: true,
+      open: true,
     }
   },
 }
 </script>
 
-<style lang="stylus">
-.product-form
+<style lang="stylus" scoped>
+.cannabinoid
   display flex
   flex-basis 100%
   flex-wrap wrap
@@ -132,6 +124,52 @@ export default {
         margin-bottom 30px
 
 
+        &.name   
+          flex-basis 50%
+
+        &.description
+          flex-basis 75%
+
+        &.images
+          flex-wrap wrap
+          .add-image-container
+            cursor pointer
+            display flex
+            flex-basis 75%
+            background-color #fafbff
+            border dashed 1px #d6dae9
+            height 100px
+            border-radius 4px
+            justify-content center
+            align-items center
+            position relative
+            margin-bottom 1em
+            
+            input
+              cursor pointer
+              opacity 0
+              width 100%
+              height 100%
+              top 0px
+              left 0px
+              position absolute
+
+          .product-images-container
+            display flex
+            flex-basis 75%
+            border solid 1px #d6dae9
+            border-radius 4px
+            
+            .product-image-container
+              display flex
+              justify-content center
+              align-items center
+              width 150px
+              padding 1em
+              
+              img
+                width: 100%
+
 
         &.wholesale
           flex-basis 25%
@@ -157,6 +195,7 @@ export default {
 
           .description
             text-align left
+            width 50%
             font-weight 500
             font-size 12px
             color #a7adc6
