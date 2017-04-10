@@ -64,10 +64,6 @@ export default {
   flex-basis 100%
   flex-wrap wrap
 
-  .row
-    display flex
-    flex-basis 100%
-
   .section
     display flex
     flex-basis 100%
@@ -130,8 +126,6 @@ export default {
         flex-wrap wrap
         flex-basis 100%
         margin-bottom 30px
-
-
 
         &.wholesale
           flex-basis 25%

@@ -65,6 +65,20 @@ a
  color rgba(0, 0, 0, .5) 
 
 
+.row
+  flex-basis 100%
+  width 100%
+  
+.row-flex
+  @extends .row
+  display flex
+    
+.row-flex-wrap
+  @extends .row-flex
+  flex-wrap wrap
+    
+ 
+
 #app
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
