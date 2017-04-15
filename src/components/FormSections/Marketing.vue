@@ -1,14 +1,7 @@
 <template lang="pug">
 div.marketing
-  div.section
-    div.section-header(:class="{'closed': !open}", @click="open = !open")
-      span.top-border
-      h3 Product marketing
-      i.material-icons(v-if="!open") keyboard_arrow_down
-      i.material-icons(v-else) keyboard_arrow_up
-
-    div.section-body
-
+  p hi
+  
 </template>
 
 <script>
