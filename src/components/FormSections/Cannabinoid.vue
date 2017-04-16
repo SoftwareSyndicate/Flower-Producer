@@ -1,5 +1,5 @@
 <template lang="pug">
-
+  p comming soon
 
 </template>
 

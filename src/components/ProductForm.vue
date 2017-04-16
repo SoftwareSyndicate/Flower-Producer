@@ -62,7 +62,8 @@ div.product-form
   display flex
   flex-basis 100%
   flex-wrap wrap
-
+  margin-bottom 4em
+    
   .section
     display flex
     flex-basis 100%

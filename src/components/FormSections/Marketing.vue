@@ -1,8 +1,149 @@
 <template lang="pug">
-div.marketing
-  p hi
-  
+div.row-flex-wrap
+
+  // Selling Points
+  div.field.row-75
+    div.row-flex.label-container
+      span.label Selling points
+
+    div.row-flex.description-container
+      span.description Needs update  But I must explain to you how all this mistaken idea of denouncing of a pleasure and praising pain was born and I will give you a complete account of the system.
+
+    div.row-flex.input-container
+      s-input(:placeholder="'Describe selling point...'", :model="selling_point", :change="onSellingPointChange")
+      s-button(title="Add selling point", :classes="['primary']", :onclick="addSellingPoint")  
+
+    div.row-flex-wrap.selling-points
+      div.row-flex.selling-point-container(v-for="point in product.selling_points")
+        span.selling-point {{point}}
+
+
+  // Product Tags
+  div.field.row-75
+    div.row-flex.label-container
+      span.label Product tags
+
+    div.row-flex.description-container
+      span.description Needs update But I must explain to you how all this mistaken idea of denouncing of a pleasure and praising pain was born and I will give you a complete account of the system.
+
+    div.row-flex.input-container
+      s-select(:placeholder="'Select product tag...'", :model="tag", :change="onTagChange")
+      s-button(title="Add product tag", :classes="['primary']", :onclick="addTag")  
+
+    div.row-flex-wrap.tags
+      div.row-flex.tag-container(v-for="tag in product.tags")
+        span.tag {{tag}}
+
+
+  // Product Images
+  div.field.row-flex-wrap-75
+    div.row-flex.label-container
+      span.label Additional marketing images
+
+    div.row-flex.description-container
+      span.description Needs update  But I must explain to you how all this mistaken idea of denouncing of a pleasure and praising pain was born and I will give you a complete account of the system.
+
+    div.add-image-container
+      p Drag and drop an image or 
+        u click to upload
+        input(type="file", @change="onFileChange")
+
+    div.product-images-container.row-flex(v-if="product.marketing_images && product.marketing_images.length")
+      div.product-image-container(v-for="image in product.marketing_images")
+        img(:src="image", alt="product image" )
+
+        
 </template>
+
+<style lang="stylus" scoped>
+  .field
+    margin-bottom 30px
+
+  .label-container
+    margin-bottom 12px
+
+  .description-container
+    margin-bottom 18px
+      
+  .input-container
+    .s-input
+      margin-right 20px
+
+    .s-select
+      margin-right 20px
+       
+  .selling-point-container
+    margin-top 1em
+    padding .7em
+    background-color rgba(0,0,0, .05)
+    border-radius 4px
+        
+  .selling-point
+    font-size 15px
+
+  .tag-container
+    margin-top 1em
+    padding .7em
+    background-color rgba(0,0,0, .05)
+    border-radius 4px
+        
+  .tag
+    font-size 15px
+         
+  .label-container
+    margin-bottom 12px
+
+  .description-container
+    margin-bottom 18px
+
+  .add-image-container
+    cursor pointer
+    display flex
+    flex-basis 100%
+    background-color #fafbff
+    border dashed 1px #d6dae9
+    height 100px
+    border-radius 4px
+    justify-content center
+    align-items center
+    position relative
+    margin-bottom 1em
+
+    input
+      cursor pointer
+      opacity 0
+      width 100%
+      height 100%
+      top 0px
+      left 0px
+      position absolute
+
+    p
+      font-weight 500
+      color #656a86
+      font-size 14px
+
+    u 
+      font-weight 500
+      font-size 14px
+
+  .product-images-container
+    border solid 1px #d6dae9
+    border-radius 4px
+
+    .product-image-container
+      display flex
+      justify-content center
+      align-items center
+      width 150px
+      padding 1em
+
+      img
+        width: 100%
+
+    
+</style>
+
 
 <script>
 export default {
@@ -11,7 +152,10 @@ export default {
     product: {
       type: Object,
       default:  {
-
+        selling_points: [],
+        tags: [],
+        marketing_images: [],
+        promotions: [],
       }
     },
     open: {
@@ -19,171 +163,52 @@ export default {
       default: true
     }
   },
+  data(){
+    return {
+      selling_point: "",
+      selling_points: this.product.selling_points,
+      tag: "",
+      tags: this.product.tags
+    }
+  },
   created(){},
   methods: {
-    
+    onSellingPointChange(val){
+      this.selling_point = val.target.value.trim();
+    },
+    addSellingPoint(){
+      if(this.product.selling_points){
+        this.product.selling_points.push(this.selling_point)        
+      } else {
+        this.product.selling_points = [this.selling_point]
+      }
+      this.selling_point = ""
+    },
+    onTagChange(){
+
+    },
+    addTag(){
+
+    },
+    onFileChange(e){
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length)
+        return;
+      this.createImage(files[0]);
+    },
+    createImage(file) {
+      this.$store.dispatch('uploadFile', {
+        file: file
+      }).then(results => {
+        console.log(results)
+        if(this.product.marketing_images){
+          this.product.marketing_images.push(results.downloadURL);
+        } else {
+          this.product.marketing_images = [results.downloadURL]
+        }
+      });
+    },
   },
 }
 </script>
 
-<style lang="stylus" scoped>
-.marketing
-  display flex
-  flex-basis 100%
-  flex-wrap wrap
-
-  .row
-    display flex
-    flex-basis 100%
-
-  .section
-    display flex
-    flex-basis 100%
-    flex-wrap wrap
-    margin-bottom 20px
-
-    .section-header
-      cursor pointer
-      align-items center
-      display flex
-      flex-basis 100%
-      flex-wrap wrap
-      margin-bottom 20px
-      border-top-left-radius 4px
-      border-bottom-left-radius 4px
-      background-color rgba(255, 255, 255, 0.2)
-      box-shadow inset 0 -1px 0 0 #c3ead6
-      border-left solid 1px #d6dae9
-      border-bottom solid 1px #d6dae9
-
-      &.closed
-        box-shadow none
-        .top-border
-          background-color #d6dae9
-          
-      .top-border
-        flex-basis 100%
-        height 4px
-        background-color #3ed783
-        border-top-left-radius 4px
-        transition background-color .5s ease
-
-      h3
-        font-size 14px
-        font-weight 500
-        color #4a4e5d
-        padding 20px
-
-      i
-        margin-left auto
-        margin-right 30px
-        color rgba(0,0,0,0.5)
-        cursor pointer
-        border-radius 4px
-
-    .open-enter-active, .open-leave-active
-      transition all .5s ease
-
-    .open-enter, .open-leave-active
-      opacity 0
-      height 0px
-
-    .section-body
-      display flex
-      flex-basis 100%
-      flex-wrap wrap
-
-      .field
-        display flex
-        flex-wrap wrap
-        flex-basis 100%
-        margin-bottom 30px
-
-
-        &.name   
-          flex-basis 50%
-
-        &.description
-          flex-basis 75%
-
-        &.images
-          flex-wrap wrap
-          .add-image-container
-            cursor pointer
-            display flex
-            flex-basis 75%
-            background-color #fafbff
-            border dashed 1px #d6dae9
-            height 100px
-            border-radius 4px
-            justify-content center
-            align-items center
-            position relative
-            margin-bottom 1em
-            
-            input
-              cursor pointer
-              opacity 0
-              width 100%
-              height 100%
-              top 0px
-              left 0px
-              position absolute
-
-          .product-images-container
-            display flex
-            flex-basis 75%
-            border solid 1px #d6dae9
-            border-radius 4px
-            
-            .product-image-container
-              display flex
-              justify-content center
-              align-items center
-              width 150px
-              padding 1em
-              
-              img
-                width: 100%
-
-
-        &.wholesale
-          flex-basis 25%
-          margin-right 1em
-
-        &.retail
-          flex-basis 25%
-          margin-right 1em
-                        
-        .label-container
-          display flex
-          flex-basis 100%
-          margin-bottom 12px
-
-          .label
-            font-weight 500
-            font-size 13px
-
-        .description-container
-          display flex
-          flex-basis 100%
-          margin-bottom 12px
-
-          .description
-            text-align left
-            width 50%
-            font-weight 500
-            font-size 12px
-            color #a7adc6
-            line-height 1.33
-
-
-        .input-container
-          display flex
-          flex-basis 100%
-
-
-
-            
-
-</style>
