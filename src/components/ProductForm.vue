@@ -2,7 +2,7 @@
 div.product-form
 
   // General 
-  div.section
+  div.section(:class="{'closed': !generalOpen}")
     div.section-header(:class="{'closed': !generalOpen}", @click="generalOpen = !generalOpen")
       span.top-border
       h3 Genaral Info
@@ -16,7 +16,7 @@ div.product-form
 
 
   // Retail
-  div.section
+  div.section(:class="{'closed': !retailOpen}")
     div.section-header(:class="{'closed': !retailOpen}", @click="retailOpen = !retailOpen")
       span.top-border
       h3 Retail Info
@@ -29,7 +29,7 @@ div.product-form
         retail-section(:product="product")
 
   // Cannabinoid
-  div.section
+  div.section(:class="{'closed': !cannabinoidOpen}")
     div.section-header(:class="{'closed': !cannabinoidOpen}", @click="cannabinoidOpen = !cannabinoidOpen")
       span.top-border
       h3 Cannabinoid & Ingredient Info
@@ -43,7 +43,7 @@ div.product-form
 
 
   // Marketing
-  div.section
+  div.section(:class="{'closed': !marketingOpen}")
     div.section-header(:class="{'closed': !marketingOpen}", @click="marketingOpen = !marketingOpen")
       span.top-border
       h3 Product marketing
@@ -68,15 +68,18 @@ div.product-form
     display flex
     flex-basis 100%
     flex-wrap wrap
-    margin-bottom 20px
+    margin-bottom 60px
 
+    &.closed
+      margin-bottom 20px
+      
     .section-header
       cursor pointer
       align-items center
       display flex
       flex-basis 100%
       flex-wrap wrap
-      margin-bottom 20px
+      margin-bottom 30px
       border-top-left-radius 4px
       border-bottom-left-radius 4px
       background-color rgba(255, 255, 255, 0.2)

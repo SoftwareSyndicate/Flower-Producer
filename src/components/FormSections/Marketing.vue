@@ -14,9 +14,10 @@ div.row-flex-wrap
       s-button(title="Add selling point", :classes="['primary']", :onclick="addSellingPoint")  
 
     div.row-flex-wrap.selling-points
-      div.row-flex.selling-point-container(v-for="point in product.selling_points")
-        span.selling-point {{point}}
-
+      div.row-flex.item-container(v-for="point in product.selling_points")
+        span.dot
+        span {{point}}
+        s-button(title="Delete item", :classes="[]", :onclick="removeSellingPoint", :value="point")  
 
   // Product Tags
   div.field.row-75
@@ -27,12 +28,14 @@ div.row-flex-wrap
       span.description Needs update But I must explain to you how all this mistaken idea of denouncing of a pleasure and praising pain was born and I will give you a complete account of the system.
 
     div.row-flex.input-container
-      s-select(:placeholder="'Select product tag...'", :model="tag", :change="onTagChange")
+      s-select(:placeholder="'Select product tag...'", :model="tag", :change="onTagChange", :items="tag_options")
       s-button(title="Add product tag", :classes="['primary']", :onclick="addTag")  
 
     div.row-flex-wrap.tags
-      div.row-flex.tag-container(v-for="tag in product.tags")
+      div.row-flex.item-container(v-for="tag in product.tags")
+        span.dot
         span.tag {{tag}}
+        s-button(title="Delete item", :classes="[]", :onclick="removeTag", :value="tag")  
 
 
   // Product Images
@@ -72,14 +75,41 @@ div.row-flex-wrap
     .s-select
       margin-right 20px
        
-  .selling-point-container
+  .item-container
     margin-top 1em
-    padding .7em
-    background-color rgba(0,0,0, .05)
+    height 60px
+    padding-left 20px
+    padding-right 20px
+    background-color #fafbff
     border-radius 4px
-        
+    align-items center
+    border solid #fafbff 1px;
+    transition all .4s ease
+    
+    .s-button
+      margin-left auto
+      opacity 0
+      transition all .4s ease
+
+    &:hover
+      border solid #3ed783 1px;
+
+      .s-button
+        opacity 1
+
+    span.dot
+      content " "
+      width 8px
+      height 8px
+      border-radius 50%
+      margin-right 20px
+      margin-top 1px
+      background-color #a7adc6
+
+             
   .selling-point
     font-size 15px
+   
 
   .tag-container
     margin-top 1em
@@ -168,13 +198,17 @@ export default {
       selling_point: "",
       selling_points: this.product.selling_points,
       tag: "",
-      tags: this.product.tags
+      tag_options: [
+        {title: "organic", value: "organic" },
+        {title: "vegan", value: "vegan"},
+        {title: "gluten-free", value: "gluten-free"},
+      ]
     }
   },
   created(){},
   methods: {
     onSellingPointChange(val){
-      this.selling_point = val.target.value.trim();
+      this.selling_point = val.target.value.trim()
     },
     addSellingPoint(){
       if(this.product.selling_points){
@@ -184,11 +218,22 @@ export default {
       }
       this.selling_point = ""
     },
-    onTagChange(){
-
+    removeSellingPoint(point){
+      this.product.selling_points.splice(this.product.selling_points.indexOf(point), 1)
+    },
+    onTagChange(item){
+      this.tag = item.value
     },
     addTag(){
-
+      if(this.product.tags){
+        this.product.tags.push(this.tag)        
+      } else {
+        this.product.tags = [this.tag]
+      }
+      this.tag = ""
+    },
+    removeTag(tag){
+      this.product.tags.splice(this.product.tags.indexOf(tag), 1)
     },
     onFileChange(e){
       var files = e.target.files || e.dataTransfer.files;

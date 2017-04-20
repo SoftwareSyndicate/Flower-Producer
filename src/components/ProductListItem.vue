@@ -9,10 +9,22 @@ div.product-list-item
 
     div.info-container
       div.top
-        div.description-container
-          h4 {{product.name}}
-          span(v-for="tag in product.tags") {{tag}}
+        div.row-flex-wrap.description-container
+          div.row-flex-100
+            h4 {{product.name}}
+          div.row-flex-100
+            div.selling-point(v-for="(point, index) in product.selling_points")
+              span {{point}}
+              span.dot
+            // div.tag(v-for="(tag, index) in product.tags")
+            //   span {{tag}}
+            //   span.dash(v-if="index != product.selling_points.length - 1")
+            div.price-container(v-if="product.wholesale_price")
+              span.price(v-if="product.wholesale_price") ${{product.wholesale_price}} Wholesale
+              span.break(v-if="product.retail_price") |
+              span.price(v-if="product.retail_price") ${{product.retail_price}} Retail
 
+              
         div.actions-container
           div.buttons-container
             s-button(:title="'Archive'", :class=['sm'])
@@ -34,20 +46,6 @@ div.product-list-item
 
 </template>
 
-<script>
-export default {
-  name: 'ProductListItem',
-  props: {
-    product: {
-      type: Object,
-      default: () => {}
-    }
-  },
-  data(){
-    return {}
-  },
-}
-</script>
 
 <style lang="stylus" scoped>
 
@@ -123,19 +121,35 @@ weird-green = #3ed783
             color #4a4a4a
             padding-bottom 4px
 
+
          span
            font-size 13px
            letter-spacing -0.3px
            color #959bb4
            padding-right 5px
+            
+         .selling-point
+           display flex
+           align-items center
 
-           &:after
-            content "-"
+         .tag
+           display flex
+           align-items center
+           
+        .dot
+          content " "
+          width 2px
+          height 2px
+          border-radius 50%
+          margin-right 5px
+          background-color #a7adc6
+          display inline-block
+          padding 0px
 
-           &:last-child
-             &:after
-               content ""
-
+        .price-container
+          display flex
+          align-items center
+          
         .actions-container
           margin-left auto
 
@@ -177,3 +191,19 @@ weird-green = #3ed783
          border solid 0.5px #8e929e
 
 </style>
+
+
+<script>
+export default {
+  name: 'ProductListItem',
+  props: {
+    product: {
+      type: Object,
+      default: () => {}
+    }
+  },
+  data(){
+    return {}
+  },
+}
+</script>
