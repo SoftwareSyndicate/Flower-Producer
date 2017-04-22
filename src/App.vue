@@ -108,6 +108,8 @@ a
             margin-left 1em
 
     .view-container
+      height calc(100% - 60px)
+      overflow scroll
       flex-basis 100%
       padding 0em !important
 
