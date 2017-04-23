@@ -132,6 +132,38 @@ div.product-form
       font-size 12px
       color #a7adc6
       line-height 1.33
+
+  .item-container
+    margin-top 1em
+    height 60px
+    padding-left 20px
+    padding-right 20px
+    background-color #fafbff
+    border-radius 4px
+    align-items center
+    border solid #fafbff 1px;
+    transition all .4s ease
+    
+    .s-button
+      margin-left auto
+      opacity 0
+      transition all .4s ease
+
+    &:hover
+      border solid #3ed783 1px;
+
+      .s-button
+        opacity 1
+
+    span.dot
+      content " "
+      width 8px
+      height 8px
+      border-radius 50%
+      margin-right 20px
+      margin-top 1px
+      background-color #a7adc6
+
       
 </style>
 
