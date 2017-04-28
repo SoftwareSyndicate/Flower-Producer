@@ -31,7 +31,7 @@ export default {
   },
 
   ["COPY_PRODUCT"] (state, product) {
-    state.productCopy = Object.assign({}, product)
+    state.productCopy = Object.assign(state.emptyProduct, product)
   },
 
 }

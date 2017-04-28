@@ -26,6 +26,7 @@ export default {
         if(this.first){
           this.$store.commit('SET_PRODUCT', val)
           this.$store.commit('COPY_PRODUCT', val)
+          console.log(this.product)
         }
         this.first = false;
       },

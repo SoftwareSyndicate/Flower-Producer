@@ -15,6 +15,23 @@ const state = {
   product: {},
   productUpdates: {},
   productCopy: {},
+  emptyProduct: {
+    name: "",
+    description: "",
+    product_images: [],
+    wholesale_price: "0.0",
+    retail_price:  "0.0",
+    strain_catagory: "",
+    extraction_methods: [],
+    shelf_life: "",
+    terpene_profiles: [],
+    ingredients: [],
+    allergens: [],
+    nutrition_labels: [],
+    selling_points: [],
+    tags: [],
+    marketing_images: [],
+  },
   productFilters: {},
   org: {
     name: 'Flower'
